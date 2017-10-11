@@ -12,14 +12,39 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository
         public string CollectionName => "Accounts";
         public static readonly Func<string, AccountRepositoryMongo> AccountRepository = c => new AccountRepositoryMongo(new MongoClient(c));
 
+        private AccountRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
+        {
+
+        }
+
         public void Add(AccountEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public AccountEntity Find(string id)
+        public AccountEntity Find(string accountName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<AccountEntity>(CollectionName);
+                var account = collection.Find(f => f.AccountName.Equals(accountName)).FirstOrDefault();
+
+                if (account != null)
+                    return new AccountEntity()
+                    {
+                        AccountId = account.AccountId,
+                        AccountName = account.AccountName,
+                        Password = account.Password,
+                        IsLoggedIn = account.IsLoggedIn,
+                        LastLoginDate = account.LastLoginDate
+                    };
+            }
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException($"Account Name not found: {accountName}");
+            }
+
+            throw new KeyNotFoundException($"Account Name not found: {accountName}");
         }
 
         public void Modify(AccountEntity entity)
@@ -32,8 +57,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository
             throw new NotImplementedException();
         }
 
-        public AccountRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
-        {
-        }
+        
     }
 }
