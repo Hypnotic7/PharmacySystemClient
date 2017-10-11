@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystemClient", "PharmacySystemClient\PharmacySystemClient.csproj", "{A180BD62-010E-4DDF-86EF-11975AB8334C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystemBusinessLogic", "PharmacySystemBusinessLogic\PharmacySystemBusinessLogic.csproj", "{4DB1758E-F107-4139-B493-F3D0947E0FDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystemBusinessLogic", "PharmacySystemBusinessLogic\PharmacySystemBusinessLogic.csproj", "{4DB1758E-F107-4139-B493-F3D0947E0FDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystemDataAccess", "PharmacySystemDataAccess\PharmacySystemDataAccess.csproj", "{9D0FE258-10CC-42C1-BA75-7D7BDA61DDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystemDataAccess", "PharmacySystemDataAccess\PharmacySystemDataAccess.csproj", "{9D0FE258-10CC-42C1-BA75-7D7BDA61DDFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystemAPI", "PharmacySystemAPI\PharmacySystemAPI.csproj", "{A4C91BDD-FE45-44F1-B27F-1E84CDE3F3AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystemAPI", "PharmacySystemAPI\PharmacySystemAPI.csproj", "{A4C91BDD-FE45-44F1-B27F-1E84CDE3F3AA}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2B57CF9C-7ED4-46AB-895F-310840828DFC}"
 EndProject
