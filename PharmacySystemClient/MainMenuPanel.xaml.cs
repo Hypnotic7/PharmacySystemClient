@@ -26,13 +26,25 @@ namespace PharmacySystemClient
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals("Process Order"))
+            var button = sender as Button;
+            if (button.Name.Equals("OrderBtn"))
             {
-                OrderPanel orderPanel = new OrderPanel();
-                orderPanel.InitializeComponent();
-               
-
-            }  
+               Window orderPanel = new OrderPanel();
+                orderPanel.Show();
+                this.Close();
+            }
+            else if (button.Name.Equals("ModifyBtn"))
+            {
+                Window modifyPanel = new ModifyPanel();
+                modifyPanel.Show();
+                this.Close();
+            }
+            //else if (button.Name.Equals("SalesBtn"))
+            //{
+            //    Window salesPanel = new SalesPanel();
+            //    salesPanel.Show();
+            //    this.Close();
+            //}
         }
     }
 }

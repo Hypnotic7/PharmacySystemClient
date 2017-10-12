@@ -14,20 +14,22 @@ namespace PharmacySystemAPI.Controllers
         // POST api/values
         [HttpPost]
         
-        public AccountResponse Login([FromBody]AccountRequest accountRequest)
+        public AccountResponse Post([FromBody]AccountRequest accountRequest)
         {
             AccountValidation accountValidation;
+      
+            
             return new AccountResponse();
         }
 
-        // POST api/values
-        [HttpPost]
+        //// POST api/values
+        //[HttpPost]
 
-        public AccountResponse CreateAccount([FromBody]AccountRequest accountRequest)
-        {
-            AccountValidation accountValidation;
-            return new AccountResponse();
-        }
+        //public AccountResponse CreateAccount([FromBody]AccountRequest accountRequest)
+        //{
+        //    AccountValidation accountValidation;
+        //    return new AccountResponse();
+        //}
 
     }
 }

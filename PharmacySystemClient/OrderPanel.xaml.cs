@@ -24,9 +24,19 @@ namespace PharmacySystemClient
             InitializeComponent();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var button = sender as Button;
+            if (button.Name.Equals("CheckoutBtn"))
+            {
+                
+            }
+            else if (button.Name.Equals("BackBtn"))
+            {
+                Window mainMenu = new MainMenu();
+                mainMenu.Show();
+                this.Close();
+            }
         }
     }
 }
