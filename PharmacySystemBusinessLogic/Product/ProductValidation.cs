@@ -10,19 +10,19 @@ namespace PharmacySystemBusinessLogic.Product
     public class ProductValidation
     {
 
-        public IDataAccess<ProductEntity> AccountRepository { get; }
+        public IDataAccess<OrderEntity> AccountRepository { get; }
 
-        public ProductValidation(IRepositoryFactory<ProductEntity> productFactory, string connectionString)
+        public ProductValidation(IRepositoryFactory<OrderEntity> productFactory, string connectionString)
         {
 
         }
 
-        public bool CheckStock(ProductEntity productEntity)
+        public bool CheckStock(OrderEntity orderEntity)
         {
             return true;
         }
 
-        public bool ChangeQuantity(ProductEntity productEntity)
+        public bool ChangeQuantity(OrderEntity orderEntity)
         {
             return true;
         }

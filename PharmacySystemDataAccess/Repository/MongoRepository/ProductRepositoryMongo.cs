@@ -6,27 +6,27 @@ using PharmacySystemDataAccess.Models.Product;
 
 namespace PharmacySystemDataAccess.Repository.MongoRepository
 {
-    public class ProductRepositoryMongo : MongoRepository,IDataAccess<ProductEntity>
+    public class ProductRepositoryMongo : MongoRepository,IDataAccess<OrderEntity>
     {
         public string CollectionName => "Products";
         public static readonly Func<string, ProductRepositoryMongo> ProductRepository = c => new ProductRepositoryMongo(new MongoClient(c));
 
-        public void Add(ProductEntity entity)
+        public void Add(OrderEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(ProductEntity entity)
+        public void Remove(OrderEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Modify(ProductEntity entity)
+        public void Modify(OrderEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public ProductEntity Find(string id)
+        public OrderEntity Find(string id)
         {
             throw new NotImplementedException();
         }

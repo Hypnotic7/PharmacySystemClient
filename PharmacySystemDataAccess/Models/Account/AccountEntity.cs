@@ -11,8 +11,8 @@ namespace PharmacySystemDataAccess.Models.Account
         public string AccountId { get; set; }
         public string AccountName { get; set; }
         public string Password { get; set; }
-        public AccountTypeEnum type { get; set; }
-        public AccountPermissions AccountPermissions { get; set; }
+        public AccountTypeEnum AccountType { get; set; }
+        //public AccountPermissions AccountPermissions { get; set; }
 
         public bool IsLoggedIn { get; set; }
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]

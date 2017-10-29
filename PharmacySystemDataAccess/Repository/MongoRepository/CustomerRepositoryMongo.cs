@@ -14,7 +14,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository
         }
 
         public string CollectionName => "Customers";
-        public static readonly Func<string, AccountRepositoryMongo> CustomerRepository = c => new AccountRepositoryMongo(new MongoClient(c));
+        //public static readonly Func<string, AccountRepositoryMongo> CustomerRepository = c => new AccountRepositoryMongo(new MongoClient(c));
 
         public void Add(CustomerEntity entity)
         {

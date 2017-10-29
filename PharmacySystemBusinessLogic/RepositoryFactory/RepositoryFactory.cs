@@ -18,8 +18,8 @@ namespace PharmacySystemBusinessLogic.RepositoryFactory
                 case "ProductRepository":
                     return (IDataAccess<T>) ProductRepositoryMongo.ProductRepository(connectionString);
                     break;
-                case "CustomerRepository":
-                    return (IDataAccess<T>) CustomerRepositoryMongo.CustomerRepository(connectionString);
+                //case "CustomerRepository":
+                //    return (IDataAccess<T>) CustomerRepositoryMongo.CustomerRepository(connectionString);
                 default:
                     throw new ArgumentException(type + " Could not be found");
 

@@ -10,6 +10,6 @@ namespace PharmacySystemAPI.Models.Product
     {
         public bool IsValid { get; set; }
         public string Message { get; set; }
-        public IEnumerable<ProductEntity> ProductCollection { get; set; }
+        public IEnumerable<OrderEntity> ProductCollection { get; set; }
     }
 }
