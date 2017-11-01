@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="ModifyPanel" Height="300" Width="300">
     <Grid>
-        
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,28,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" />
     </Grid>
 </Window>

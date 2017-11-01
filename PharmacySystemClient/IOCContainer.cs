@@ -24,8 +24,8 @@ namespace PharmacySystemClient
 
         public void RegisterInterfaces()
         {
-            container = new UnityContainer();
-            container.RegisterInstance<ILogin>("ILogin",new Login());
+
+            //container.RegisterInstance<ILogin>("ILogin",new Login());
             //Console.WriteLine("Interfaces Registered");
         }
     }

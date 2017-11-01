@@ -17,7 +17,7 @@ namespace PharmacySystemClient
 
   
 
-    class UIRemote 
+    class UIRemote
     {
          ICommand icommand;
 
@@ -32,11 +32,6 @@ namespace PharmacySystemClient
         public void ExecuteCommand()
         {
             icommand.Execute();
-        }
-
-        public void Undo()
-        {
-            
         }
     }
 
@@ -128,4 +123,62 @@ namespace PharmacySystemClient
         }
     }
 }
+   // /class LoggedInAsManager : ILogin
+    //{
+    //    private Login login;
+
+    //    public LoggedInAsManager(Login login)
+    //    {
+    //        this.login = login;
+    //    }
+
+    //    public void Execute()
+    //    {
+    //        MainMenu menu = new MainMenu();
+    //        Window window = menu;
+
+    //class LoginCommand : ICommand
+    //{
+    //    private Login login;
+    //    public LoginCommand(Login login)
+    //    {
+    //        this.login = login;
+    //    }
+
+    //    public void ExecuteCommand()
+    //    {
+            
+    //    }
+    //}
+
+    //class LoggedInAsManager : ILogin
+    //{
+    //    private Login login;
+
+    //    public LoggedInAsManager(Login login)
+    //    {
+    //        this.login = login;
+    //    }
+
+    //    public void Execute()
+    //    {
+    //        MainMenu menu = new MainMenu();
+    //        Window window = menu;
+    //        window.Show();
+
+    //    }
+
+    // ILogin ilogin;
+
+    //    public LoginCommand(){}
+
+    //    public void SetCommand(ILogin ilogin)
+    //    {
+    //        this.ilogin = ilogin;
+    //    }
+
+    //    public void ExecuteCommand()
+    //    {
+    //        ilogin.Execute();
+    //    }
 

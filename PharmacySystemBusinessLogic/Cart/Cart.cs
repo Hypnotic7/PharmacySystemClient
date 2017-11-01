@@ -2,17 +2,17 @@
 {
     public abstract class Cart
     {
-        public string description;
-        public abstract double Cost();
+        //public string description;
+        //public abstract double Cost();
 
-        public string GetDescription()
-        {
-            return "Empty Cart";
-        }
+        //public string GetDescription()
+        //{
+        //    return "Empty Cart";
+        //}
 
-        public double Cost()
-        {
-            return GetCost();
-        }
+        //public double Cost()
+        //{
+        //    return GetCost();
+        //}
     }
 }

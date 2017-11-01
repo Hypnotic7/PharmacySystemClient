@@ -2,16 +2,16 @@
 {
     public abstract class CartDecorator : EmptyCart
     {
-        public EmptyCart c;
+        //public EmptyCart c;
 
-        public CartDecorator(EmptyCart c)
-        {
-            this.c = c;
-        }
+        //public CartDecorator(EmptyCart c)
+        //{
+        //    this.c = c;
+        //}
 
-        public double GetCost()
-        {
-            return c.GetCost();
-        }
+        //public double GetCost()
+        //{
+        //    return c.GetCost();
+        //}
     }
 }

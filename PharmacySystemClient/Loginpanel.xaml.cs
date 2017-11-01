@@ -15,32 +15,51 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using PharmacySystemClient.Command;
+using Unity;
+
 
 namespace PharmacySystemClient
 {
     /// <summary>
     /// Interaction logic for Loginwindow.xaml
-    /// </summary>
+    /// </summary>; 
     public partial class Loginwindow : Window
     {
+        private string username;
+        private string password;
+
         public Loginwindow()
         {
             InitializeComponent();
+
+            IocContainer ioccontainer = new IocContainer();
+            ioccontainer.RegisterInterfaces();
+            //ioccontainer.container.Resolve<ILogin>();
+            //IUnityContainer con = new UnityContainer();
+            //con.RegisterInstance<ILogin>("ILogin", new Login());
+            //con.Resolve<ILogin>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var username = GetUsername();
-            var password = GetPassword();
-            bool isValid = ValidateUsernameAndPassword(username, password);
+             
+            bool isValid = ValidateUsernameAndPassword(GetUsername(), GetPassword());
 
             if (isValid == true)
              {
-                var obj = convertToJson(username,password);
-                postToWebService(obj);
-                //Window mainMenuWindow = new MainMenu();
-                //mainMenuWindow.Show();
-                //this.Close();
+ 
+                Login login = new Login();
+                 login.Username = GetUsername();
+                 login.Password = GetPassword();
+                login.ValidateLogin();
+
+                UIRemote remote = new UIRemote();
+                ViewMainMenu viewMenu = new ViewMainMenu();
+                remote.SetCommand(viewMenu);
+                remote.ExecuteCommand();
+             
+                this.Close();
              }
             else
             {
@@ -69,37 +88,6 @@ namespace PharmacySystemClient
                 return false;
             }
         }
-
-
-        private object convertToJson(string name, string password)
-        {
-            var obj = new Accounts
-            {
-                username = name,
-                password = password
-            };
-            var json =  JsonConvert.SerializeObject(obj);
-            return json;
-        }
-
-        class Accounts
-        {
-            public string username;
-            public string password;
-            private string name;
-            private string role;
-        }
-
-        static HttpClient client = new HttpClient();
-        public void postToWebService(object obj)
-        {
-            var request = WebRequest.Create("http://localhost:8080/api/Account");
-            request.Method = "POST";
-            request.ContentType = "application/json; charset=UTF-8";
-            using (var writer = new StreamWriter(request.GetRequestStream()))
-            {
-                writer.Write(obj);
-            }
-        }
+       
     }
 }

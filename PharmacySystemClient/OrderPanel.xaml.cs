@@ -24,19 +24,13 @@ namespace PharmacySystemClient
             InitializeComponent();
         }
 
-        private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            if (button.Name.Equals("CheckoutBtn"))
-            {
-                
-            }
-            else if (button.Name.Equals("BackBtn"))
-            {
-                Window mainMenu = new MainMenu();
-                mainMenu.Show();
-                this.Close();
-            }
+            UIRemote remote = new UIRemote();
+            ViewMainMenu viewMenu = new ViewMainMenu();
+            remote.SetCommand(viewMenu);
+            remote.ExecuteCommand();
+            this.Close();
         }
     }
 }
