@@ -13,8 +13,6 @@ namespace PharmacySystemClient
 {
     class IocContainer 
     {
-      
-      
         public IUnityContainer container  { get; set; }
         
         public IocContainer()
@@ -24,9 +22,9 @@ namespace PharmacySystemClient
 
         public void RegisterInterfaces()
         {
-
-            //container.RegisterInstance<ILogin>("ILogin",new Login());
-            //Console.WriteLine("Interfaces Registered");
+            container = new UnityContainer();
+            container.RegisterInstance<ILogin>("Login",new Login());
+            Console.WriteLine("Interfaces Registered");
         }
     }
 }

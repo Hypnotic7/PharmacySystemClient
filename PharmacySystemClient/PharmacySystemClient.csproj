@@ -115,11 +115,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SalesPanel.xaml.cs">
+    <Compile Include="AccountResponse.cs" />
+    <Compile Include="Modify.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductResponse.cs" />
     <Compile Include="UICommand.cs" />
-    <Page Include="Loginpanel.xaml">
+    <Page Include="Panels\Loginpanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,34 +134,34 @@
     </Compile>
     <Compile Include="IOCContainer.cs" />
     <Compile Include="Login.cs" />
-    <Compile Include="Loginpanel.xaml.cs">
+    <Compile Include="Panels\Loginpanel.xaml.cs">
       <DependentUpon>Loginpanel.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainMenuPanel.xaml">
+    <Page Include="Panels\MainMenuPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ModifyPanel.xaml">
+    <Page Include="Panels\ModifyPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OrderPanel.xaml">
+    <Page Include="Panels\OrderPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SalesPanel.xaml">
+    <Page Include="Panels\SalesPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainMenuPanel.xaml.cs">
+    <Compile Include="Panels\MainMenuPanel.xaml.cs">
       <DependentUpon>MainMenuPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModifyPanel.xaml.cs">
+    <Compile Include="Panels\ModifyPanel.xaml.cs">
       <DependentUpon>ModifyPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderPanel.xaml.cs">
+    <Compile Include="Panels\OrderPanel.xaml.cs">
       <DependentUpon>OrderPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PharmacySystemClient
 {
-    class Accounts
+    class AccountResponse
     {
-        public string AccountName;
-        public string AccountPassword;
+        public bool IsValid { get; set; }
+        public string Message { get; set; }
     }
 
 }

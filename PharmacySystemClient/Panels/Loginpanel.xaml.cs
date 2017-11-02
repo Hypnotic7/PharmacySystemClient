@@ -35,37 +35,44 @@ namespace PharmacySystemClient
 
             IocContainer ioccontainer = new IocContainer();
             ioccontainer.RegisterInterfaces();
-            //ioccontainer.container.Resolve<ILogin>();
-            //IUnityContainer con = new UnityContainer();
-            //con.RegisterInstance<ILogin>("ILogin", new Login());
-            //con.Resolve<ILogin>();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-             
+        {   
             bool isValid = ValidateUsernameAndPassword(GetUsername(), GetPassword());
 
             if (isValid == true)
-             {
- 
+            {
                 Login login = new Login();
-                 login.Username = GetUsername();
-                 login.Password = GetPassword();
-                login.ValidateLogin();
-
-                UIRemote remote = new UIRemote();
-                ViewMainMenu viewMenu = new ViewMainMenu();
-                remote.SetCommand(viewMenu);
-                remote.ExecuteCommand();
-             
-                this.Close();
-             }
+                login.Username = GetUsername();
+                login.Password = GetPassword();
+                AccountResponse response = login.ValidateLogin();
+                bool check = response.IsValid;
+                if (check == true)
+                {
+                    MessageBox.Show("Account Valid!","Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UIRemote remote = new UIRemote();
+                    ViewMainMenu viewMenu = new ViewMainMenu();
+                    remote.SetCommand(viewMenu);
+                    remote.ExecuteCommand();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Account not valid! " + response.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UIRemote remote = new UIRemote();
+                    ViewMainMenu viewMenu = new ViewMainMenu();
+                    remote.SetCommand(viewMenu);
+                    remote.ExecuteCommand();
+                    this.Close();
+                }
+            }
             else
             {
-                  MessageBox.Show("Invalid username or password", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid username or password! ", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-           
+
         }
 
         private string GetUsername()
