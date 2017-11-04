@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using PharmacySystemBusinessLogic.Utilities.Encryption;
-using PharmacySystemDataAccess.Models;
 using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Repository;
 using PharmacySystemBusinessLogic.RepositoryFactory;
@@ -18,9 +15,9 @@ namespace PharmacySystemBusinessLogic.Account.Validation
             AccountRepository = accountFactory.CreateRepository(connectionString, "AccountRepository");
         }
 
-        public AccountValidationStatus ValidateAccount(string accountName, string password)
+        public ProductValidationStatus ValidateAccount(string accountName, string password)
         {
-            var accountValidationStatus = new AccountValidationStatus { IsValid = false };
+            var accountValidationStatus = new ProductValidationStatus { IsValid = false };
 
             if (accountName.Equals(string.Empty)) return accountValidationStatus;
             if (password.Equals(string.Empty)) return accountValidationStatus;

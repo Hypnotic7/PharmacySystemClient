@@ -2,22 +2,14 @@
 {
     public class BottleElement : IElement
     {
-        public int Items;
+        public int Items { get; set; }
 
-        public BottleElement(int x)
-        {
-            Items = x;
-        }
+        public BottleElement(int x) { Items = x; }
 
         //accept the visitor
         public void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
-        }
-
-        public int GetItems()
-        {
-            return Items;
         }
     }
 }

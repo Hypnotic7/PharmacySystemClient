@@ -13,16 +13,37 @@ namespace PharmacySystemBusinessLogic.Visitor
                 new BottleElement(50)
             };
 
-            var visitor = new PillCountVisitor();
+            var totalPills = CalculateAmount(products);
+            var totalWeight = CalculateWeight(products);
 
-            //iterate through each item in list
-            foreach (IElement e in products)
+            Debug.WriteLine("\nNumber of Pills  ->  " + totalPills);
+            Debug.WriteLine("Weight of Pills  ->  " + totalWeight + "mg\n");
+
+            int CalculateAmount(List<IElement> productsB)
             {
-                e.Accept(visitor);
+                var visitor = new PillCountVisitor();
+
+                //iterate through each item in list
+                foreach (IElement e in productsB)
+                {
+                    e.Accept(visitor);
+                }
+
+                return visitor._count;
             }
 
-            var totalPills = visitor._count;
-            Debug.WriteLine(totalPills);
+            double CalculateWeight(List<IElement> productsC)
+            {
+                var visitor = new PillWeightVisitor();
+
+                //iterate through each item in list
+                foreach (IElement e in productsC)
+                {
+                    e.Accept(visitor);
+                }
+
+                return visitor._weight;
+            }
         }
     }
 }
