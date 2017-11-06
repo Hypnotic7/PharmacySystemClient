@@ -30,13 +30,23 @@ namespace PharmacySystemAPI.Controllers
             try
             {
                 var orderValidationStatus = orderValidation.ValidateOrder(orderRequest.AccountName,
-                    orderRequest.CustomerName, orderRequest.Products);
+                   orderRequest.CustomerName, orderRequest.Products);
+                orderValidation.AddOrderToRepository(orderValidationStatus.OrderEntity);
+                return new OrderResponse()
+                {
+                    Message = "Order Complete",
+                    OrderComplete = orderValidationStatus.IsValid,
+                    OrderEntity = orderValidationStatus.OrderEntity
+                };
             }
             catch (Exception e)
             {
-                throw new NotImplementedException();
+                return new OrderResponse()
+                {
+                    Message = "Order Not Complete",
+                    OrderComplete = false
+                };
             }
-            return new OrderResponse();
         }
     }
 }

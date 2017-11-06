@@ -47,7 +47,7 @@ namespace PharmacySystemBusinessLogic.Product
                     containers.Add(new BottleElement(product.Quantity));
 
             }
-
+            var weight = CalculateWeight(containers);
             return CalculateAmount(containers);
         }
 
@@ -80,13 +80,33 @@ namespace PharmacySystemBusinessLogic.Product
             return visitor._count;
         }
 
-        public bool CheckStock(ProductEntity productEntity)
+        public bool CheckStock(List<ProductEntity> fullListOfProducts, List<ProductEntity> productListFromClient)
         {
-            return true;
+            var inStock = false;
+            foreach (var productFromFullList in fullListOfProducts)
+            {
+                foreach (var productFromClient in productListFromClient)
+                {
+                    if (productFromFullList.ProductName == productFromClient.ProductName)
+                    {
+                        inStock = productFromFullList.Quantity > productFromClient.Quantity;
+                    }
+                }
+            }
+            return inStock;
         }
 
         public bool ChangeQuantity(ProductEntity productEntity)
         {
+            try
+            {
+                ProductRepository.Modify(productEntity);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return false;
+            }
+            
             return true;
         }
 

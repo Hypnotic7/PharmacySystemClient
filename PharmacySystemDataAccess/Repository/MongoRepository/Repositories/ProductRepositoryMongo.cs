@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Models.Product;
 
@@ -23,17 +24,50 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         public void Modify(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entityFromDb = Find(entity.ProductName);
+                entityFromDb.Quantity -= entity.Quantity;
+                var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<ProductEntity>(CollectionName);
+                collection.ReplaceOne(f => f.ProductName.Equals(entity.ProductName), entityFromDb);
+            }
+            catch (Exception e)
+            {
+                throw new NotImplementedException();
+            }
+            
         }
 
-        public ProductEntity Find(string id)
+        public ProductEntity Find(string productName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<ProductEntity>(CollectionName);
+                var product = collection.Find(f => f.ProductName.Equals(productName)).FirstOrDefault();
+
+                if (product != null)
+                    return new ProductEntity()
+                    {
+                        ProductId = product.ProductId,
+                        ProductName = product.ProductName,
+                        Price = product.Price,
+                        Quantity = product.Quantity,
+                        RequiresPrescription = product.RequiresPrescription,
+                        Container = product.Container
+                    };
+            }
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException($"Product not found: {productName}");
+            }
+
+            throw new KeyNotFoundException($"Product Name not found: {productName}");
         }
+    
 
         public ProductRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-
+           
         }
 
        
@@ -49,8 +83,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
             {
                 throw new NotImplementedException();
             }
-
-            throw new NotImplementedException();
         }
     }
 }

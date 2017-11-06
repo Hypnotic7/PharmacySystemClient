@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
 using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemBusinessLogic.Customer;
+using PharmacySystemBusinessLogic.Pricing;
 using PharmacySystemBusinessLogic.Product;
 using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Models.Customer;
@@ -44,13 +46,41 @@ namespace PharmacySystemBusinessLogic.Order
             if (customer == null)
                 return orderValidationStatus;
 
-            var productList = ValidateProducts(products);
+            if (ValidateProducts(products))
+            {
+                PriceCalculation pricing = new PriceCalculation(products,customer);
+                var totalCost = pricing.CalculateTotalCostOfProducts();
+                totalCost = pricing.CalculateDiscounts(totalCost);
 
-            if (productList.Equals(null))
+                orderValidationStatus.IsValid = true;
+                orderValidationStatus.OrderEntity = new OrderEntity()
+                {
+                    CustomerEntity = customer,
+                    AccountEntity = account,
+                    OrderDate = DateTime.Now,
+                    OrderId = ObjectId.GenerateNewId().ToString(),
+                    OrderType = FinalOrderType.Completed,
+                    Products = products,
+                    TotalCost = totalCost
+                };
+
                 return orderValidationStatus;
+            }
+            return orderValidationStatus;
+        }
 
-
-            return null;
+        public bool AddOrderToRepository(OrderEntity orderEntity)
+        {
+            try
+            {
+                OrderRepository.Add(orderEntity);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         private AccountEntity ValidateAccountEntity(string accName)
@@ -68,7 +98,7 @@ namespace PharmacySystemBusinessLogic.Order
             return customerValidation.CheckDoesTheCustomerExist(customerName[0], customerName[1]).CustomerEntity;
         }
 
-        private List<ProductEntity> ValidateProducts(List<ProductEntity> products)
+        private bool ValidateProducts(List<ProductEntity> products)
         {
             ProductValidation productValidation = new ProductValidation(new RepositoryFactory<ProductEntity>(), ConnString);
 
@@ -77,20 +107,18 @@ namespace PharmacySystemBusinessLogic.Order
             var totalPillCount = productValidation.CheckPillCount(products);
 
             if (totalPillCount > 38)
-                return null;
+                return false;
 
-            foreach (var product in products)
+            var inStock = productValidation.CheckStock(allProducts, products);
+
+            var quantityChanged = false;
+            if (inStock)
             {
-                foreach (var productFromDb in allProducts)
-                {
-                    if (product.ProductName.Equals(productFromDb.ProductName))
-                    {
-                        
-                    }
-                } 
-            }
 
-            return null;
+                foreach (var product in products)
+                    quantityChanged = productValidation.ChangeQuantity(product);
+            }
+            return quantityChanged;
 
         }
     }
