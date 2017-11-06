@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using PharmacySystemAPI.Models.Product;
-using PharmacySystemDataAccess.Models.Product;
+using PharmacySystemDataAccess.Models.Order;
 
 namespace PharmacySystemAPI.Models.Order
 {

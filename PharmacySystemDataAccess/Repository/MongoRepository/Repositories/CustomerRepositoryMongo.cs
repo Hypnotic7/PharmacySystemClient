@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MongoDB.Driver;
-using PharmacySystemDataAccess.Models;
 using PharmacySystemDataAccess.Models.Customer;
 
-namespace PharmacySystemDataAccess.Repository.MongoRepository
+namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 {
     public class CustomerRepositoryMongo : MongoRepository, IDataAccess<CustomerEntity>
     {

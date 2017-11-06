@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using MongoDB.Driver;
-using PharmacySystemDataAccess.Models;
 using PharmacySystemDataAccess.Models.Account;
 
-namespace PharmacySystemDataAccess.Repository.MongoRepository
+namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 {
     public class AccountRepositoryMongo : MongoRepository, IDataAccess<AccountEntity>
     {
@@ -27,7 +25,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository
             try
             {
                 var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<AccountEntity>(CollectionName);
-                var account = collection.Find(f => f.AccountName.Equals(accountName)).FirstOrDefault();
+                var account = IMongoCollectionExtensions.Find<AccountEntity>(collection, f => f.AccountName.Equals(accountName)).FirstOrDefault();
 
                 if (account != null)
                     return new AccountEntity()

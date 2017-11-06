@@ -1,9 +1,8 @@
 ﻿using System;
-using PharmacySystemBusinessLogic.RepositoryFactory;
-using PharmacySystemDataAccess.Repository;
 using PharmacySystemDataAccess.Repository.MongoRepository;
+using PharmacySystemDataAccess.Repository.MongoRepository.Repositories;
 
-namespace PharmacySystemDataAccess.Models.Account.RepositoryFactory
+namespace PharmacySystemDataAccess.Repository.RepositoryFactory
 {
     public class RepositoryFactory<T> : IRepositoryFactory<T>
     {
@@ -15,7 +14,7 @@ namespace PharmacySystemDataAccess.Models.Account.RepositoryFactory
                     return (IDataAccess<T>)AccountRepositoryMongo.AccountRepository(connectionString);
                   
                 case "ProductRepository":
-                    return (IDataAccess<T>) ProductRepositoryMongo.ProductRepository(connectionString);
+                    return (IDataAccessFindAll<T>) ProductRepositoryMongo.ProductRepository(connectionString);
                 
                 //case "CustomerRepository":
                 //    return (IDataAccess<T>) CustomerRepositoryMongo.CustomerRepository(connectionString);
