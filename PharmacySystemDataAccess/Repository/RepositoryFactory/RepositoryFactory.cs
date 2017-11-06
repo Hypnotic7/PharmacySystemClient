@@ -17,6 +17,9 @@ namespace PharmacySystemDataAccess.Repository.RepositoryFactory
 
                 case "CustomerRepository":
                     return (IDataAccess<T>)CustomerRepositoryMongo.CustomerRepository(connectionString);
+
+                case "PrescriptionRepository":
+                    return (IDataAccess<T>)PrescriptionRepositoryMongo.PrescriptionRepository(connectionString);
                 default:
                     throw new ArgumentException(type + " Could not be found");
 

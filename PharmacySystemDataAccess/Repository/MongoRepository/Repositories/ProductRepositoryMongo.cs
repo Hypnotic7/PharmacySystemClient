@@ -35,6 +35,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         }
         public static readonly Func<string, ProductRepositoryMongo> ProductRepository = c => new ProductRepositoryMongo(new MongoClient(c));
+
         public List<ProductEntity> FindAll()
         {
             try
