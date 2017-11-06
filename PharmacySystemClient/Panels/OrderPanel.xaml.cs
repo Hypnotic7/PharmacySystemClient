@@ -22,6 +22,7 @@ namespace PharmacySystemClient
         public OrderPanel()
         {
             InitializeComponent();
+            DisplayProducts();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -31,6 +32,16 @@ namespace PharmacySystemClient
             remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
             this.Close();
+        }
+
+        private void DisplayProducts()
+        {
+            Order order = new Order();
+            ProductResponse products = order.GetProducts();
+            Console.WriteLine(products.Name);
+
+            ProductList.Items.Add(products.Name);
+            //ProductList.BeginUpdate;
         }
     }
 }

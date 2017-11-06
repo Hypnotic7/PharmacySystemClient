@@ -28,8 +28,6 @@ namespace PharmacySystemClient.Command
             Console.WriteLine(json);
 
             var request = WebRequest.Create("http://localhost:8080/api/Account");
-            request.Timeout = Timeout.Infinite;
-           // request.KeepAlive = true;
             request.Method = "POST";
             request.ContentType = "application/json; charset=UTF-8";
 

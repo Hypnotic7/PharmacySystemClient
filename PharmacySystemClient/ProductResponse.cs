@@ -15,5 +15,6 @@ namespace PharmacySystemClient
         public double Price { get; set; }
         public bool RequiresPrescription { get; set; }
         public string Container { get; set; }
+
     }
 }
