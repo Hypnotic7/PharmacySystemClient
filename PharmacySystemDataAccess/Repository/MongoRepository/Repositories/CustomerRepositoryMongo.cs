@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MongoDB.Driver;
 using PharmacySystemDataAccess.Models.Customer;
 
@@ -8,10 +9,11 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
     {
         public CustomerRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
+
         }
 
         public string CollectionName => "Customers";
-        //public static readonly Func<string, AccountRepositoryMongo> CustomerRepository = c => new AccountRepositoryMongo(new MongoClient(c));
+        public static readonly Func<string, CustomerRepositoryMongo> CustomerRepository = c => new CustomerRepositoryMongo(new MongoClient(c));
 
         public void Add(CustomerEntity entity)
         {
@@ -28,9 +30,35 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
             throw new NotImplementedException();
         }
 
-        public CustomerEntity Find(string id)
+        public CustomerEntity Find(string customerName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Connect(DataAccessConstants.DatabaseName)
+                    .GetCollection<CustomerEntity>(CollectionName);
+                var customer = IMongoCollectionExtensions
+                    .Find<CustomerEntity>(collection, f => f.CustomerName.Equals(customerName)).FirstOrDefault();
+
+                if (customer != null)
+                {
+                    return new CustomerEntity()
+                    {
+                        CustomerId = customer.CustomerId,
+                        CustomerName = customer.CustomerName,
+                        DateOfBirth = customer.DateOfBirth,
+                        Address = customer.Address,
+                        PhoneNumber = customer.PhoneNumber,
+                        SchemesCards = customer.SchemesCards
+
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException($"Customer Name not found: {customerName}");
+            }
+            throw new KeyNotFoundException($"Customer Name not found: {customerName}");
+
         }
     }
 }

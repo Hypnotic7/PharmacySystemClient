@@ -24,7 +24,6 @@ namespace PharmacySystemAPI.Controllers
 
         public OrderResponse Post([FromBody]OrderRequest orderRequest)
         {
-            OrderValidation orderValidation;
 
             return new OrderResponse();
         }

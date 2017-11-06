@@ -1,5 +1,4 @@
 ﻿using System;
-using PharmacySystemDataAccess.Repository.MongoRepository;
 using PharmacySystemDataAccess.Repository.MongoRepository.Repositories;
 
 namespace PharmacySystemDataAccess.Repository.RepositoryFactory
@@ -15,9 +14,9 @@ namespace PharmacySystemDataAccess.Repository.RepositoryFactory
                   
                 case "ProductRepository":
                     return (IDataAccessFindAll<T>) ProductRepositoryMongo.ProductRepository(connectionString);
-                
-                //case "CustomerRepository":
-                //    return (IDataAccess<T>) CustomerRepositoryMongo.CustomerRepository(connectionString);
+
+                case "CustomerRepository":
+                    return (IDataAccess<T>)CustomerRepositoryMongo.CustomerRepository(connectionString);
                 default:
                     throw new ArgumentException(type + " Could not be found");
 

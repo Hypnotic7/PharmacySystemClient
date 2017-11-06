@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using PharmacySystemBusinessLogic.RepositoryFactory;
-using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Models.Product;
 using PharmacySystemDataAccess.Repository;
 
@@ -10,7 +7,6 @@ namespace PharmacySystemBusinessLogic.Product
 {
     public class ProductValidation
     {
-
         public IDataAccessFindAll<ProductEntity> ProductRepository { get; }
 
         public ProductValidation(IRepositoryFactory<ProductEntity> productFactory, string connectionString)
@@ -24,7 +20,6 @@ namespace PharmacySystemBusinessLogic.Product
 
             var products = ProductRepository.FindAll();
 
-
             if (!products.Equals(null))
             {
                 return new ProductValidationStatus()
@@ -33,8 +28,6 @@ namespace PharmacySystemBusinessLogic.Product
                     ProductEntities = products
                 };
             }
-
-
             return null;
         }
 
