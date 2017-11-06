@@ -11,5 +11,7 @@
         <ListBox HorizontalAlignment="Left" Height="100" Margin="146,83,0,0" VerticalAlignment="Top" Width="60"/>
         <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="167,217,0,0" VerticalAlignment="Top" Width="67" />
         <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,176,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="49,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="Customer "/><Run Text="name :"/></TextBlock>
+        <TextBox x:Name="CustomerTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="149,9,0,0"/>
     </Grid>
 </Window>

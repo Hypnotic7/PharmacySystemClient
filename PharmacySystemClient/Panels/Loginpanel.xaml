@@ -18,6 +18,6 @@
         <TextBox x:Name="UsernameTextField" Grid.Column="3" HorizontalAlignment="Left" Height="19.48" Margin="46.143,87.286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46.753"/>
         <TextBlock x:Name="PasswordLabel" Grid.Column="1" HorizontalAlignment="Left" Height="19.48" Margin="0,128.844,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="77.455" Grid.ColumnSpan="3"/>
         <PasswordBox x:Name="PasswordField" Grid.Column="3" HorizontalAlignment="Left" Height="19.48" Margin="46.143,128.844,0,0" VerticalAlignment="Top" Width="46.753"/>
-        <Button Grid.ColumnSpan="2" Content="Login" HorizontalAlignment="Left" Height="19" Margin="99,170,0,0" VerticalAlignment="Top" Width="68" Click="Button_Click"/>
+        <Button Grid.ColumnSpan="3" Content="Login" HorizontalAlignment="Left" Height="19" Margin="99,170,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click"/>
     </Grid>
 </Window>
