@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PharmacySystemBusinessLogic.RepositoryFactory;
 using PharmacySystemBusinessLogic.Visitor;
 using PharmacySystemDataAccess.Models.Product;
 using PharmacySystemDataAccess.Repository;
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemBusinessLogic.Product
 {
@@ -14,7 +14,7 @@ namespace PharmacySystemBusinessLogic.Product
         public ProductValidation(IRepositoryFactory<ProductEntity> productFactory, string connectionString)
         {
             ProductRepository = (IDataAccessFindAll<ProductEntity>) productFactory.CreateRepository(connectionString, "ProductRepository");
-            
+            containers = new List<IElement>();
         }
 
         public ProductValidationStatus GetAllProducts()
@@ -35,21 +35,21 @@ namespace PharmacySystemBusinessLogic.Product
         }
 
 
-        //public QuantityDetails CheckAmountOfContainer(string container)
-        //{
-        //    if(totalPillsInPack != null)
-        //            var totalPills = CalculateAmount(containers);
-        //    if (totalWeightOfBottle != null)
-        //    {
+        public int CheckPillCount(List<ProductEntity> products)
+        {
+            foreach (var product in products)
+            {
                 
-        //    }
-        //            var totalWeight = CalculateWeight(containers);
-            
-            
+                if (product.Container.Equals("BlisterPack"))
+                    containers.Add(new BlisterPackElement(product.Quantity));
 
+                if (product.Container.Equals("bottle"))
+                    containers.Add(new BottleElement(product.Quantity));
 
-        //    return true;
-        //}
+            }
+
+            return CalculateAmount(containers);
+        }
 
 
 

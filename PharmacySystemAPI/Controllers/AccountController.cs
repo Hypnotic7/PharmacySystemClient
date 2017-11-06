@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PharmacySystemAPI.Models.Account;
 using PharmacySystemBusinessLogic.Account.Validation;
-using PharmacySystemBusinessLogic.RepositoryFactory;
 using PharmacySystemDataAccess.Models.Account;
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemAPI.Controllers
 {
@@ -35,7 +35,8 @@ namespace PharmacySystemAPI.Controllers
                 return new AccountResponse()
                 {
                     IsValid = accountValidationStatus.IsValid,
-                    Message = returnMessage
+                    Message = returnMessage,
+                    Account = accountValidationStatus.Account
                 };
             }
             catch (KeyNotFoundException keyNotFound)

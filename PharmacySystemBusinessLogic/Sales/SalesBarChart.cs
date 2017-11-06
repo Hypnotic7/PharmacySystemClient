@@ -1,4 +1,5 @@
-﻿namespace PharmacySystemBusinessLogic.Sales
+﻿
+namespace PharmacySystemBusinessLogic.Sales
 {
     /*using org.jfree.chart.ChartFactory;
     using org.jfree.chart.ChartUtilities;

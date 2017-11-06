@@ -4,12 +4,12 @@ using System.Linq;
 using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemBusinessLogic.Customer;
 using PharmacySystemBusinessLogic.Product;
-using PharmacySystemBusinessLogic.RepositoryFactory;
 using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Models.Customer;
 using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Models.Product;
 using PharmacySystemDataAccess.Repository;
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemBusinessLogic.Order
 {
@@ -46,6 +46,10 @@ namespace PharmacySystemBusinessLogic.Order
 
             var productList = ValidateProducts(products);
 
+            if (productList.Equals(null))
+                return orderValidationStatus;
+
+
             return null;
         }
 
@@ -53,7 +57,7 @@ namespace PharmacySystemBusinessLogic.Order
         {
             AccountValidation accountValidation = new AccountValidation(new RepositoryFactory<AccountEntity>(), ConnString);
             
-            return accountValidation.ValidateAccount(accName, String.Empty, true).Account; 
+            return accountValidation.ValidateAccount(accName, "s", true).Account; 
         }
 
         private CustomerEntity ValidateCustomerEntity(string custName)
@@ -70,7 +74,10 @@ namespace PharmacySystemBusinessLogic.Order
 
             var allProducts = productValidation.GetAllProducts().ProductEntities;
 
-            //productValidation.CheckAmountOfContainer(products);
+            var totalPillCount = productValidation.CheckPillCount(products);
+
+            if (totalPillCount > 38)
+                return null;
 
             foreach (var product in products)
             {

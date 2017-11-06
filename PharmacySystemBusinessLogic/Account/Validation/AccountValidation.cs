@@ -2,7 +2,7 @@
 using PharmacySystemBusinessLogic.Utilities.Encryption;
 using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Repository;
-using PharmacySystemBusinessLogic.RepositoryFactory;
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemBusinessLogic.Account.Validation
 {
@@ -29,7 +29,7 @@ namespace PharmacySystemBusinessLogic.Account.Validation
 
             if (account.Equals(null)) return accountValidationStatus;
 
-            if (validateAccName)
+            if (!validateAccName)
             {
                 accountValidationStatus.IsValid = account.Password.Equals(EncryptionUtility.ComputePasswordHashValue(password));
 

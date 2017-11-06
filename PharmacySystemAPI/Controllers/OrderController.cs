@@ -4,9 +4,8 @@ using Microsoft.Extensions.Options;
 using PharmacySystemAPI.Models.Order;
 using PharmacySystemBusinessLogic.Order;
 using PharmacySystemBusinessLogic.Product;
-using PharmacySystemBusinessLogic.RepositoryFactory;
 using PharmacySystemDataAccess.Models.Order;
-
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 
 namespace PharmacySystemAPI.Controllers
