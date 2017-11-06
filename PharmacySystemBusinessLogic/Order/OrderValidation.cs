@@ -4,6 +4,7 @@ using System.Linq;
 using MongoDB.Bson;
 using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemBusinessLogic.Customer;
+using PharmacySystemBusinessLogic.Interceptor;
 using PharmacySystemBusinessLogic.Pricing;
 using PharmacySystemBusinessLogic.Product;
 using PharmacySystemDataAccess.Models.Account;
@@ -19,15 +20,25 @@ namespace PharmacySystemBusinessLogic.Order
     {
         public IDataAccess<OrderEntity> OrderRepository { get; }
         public string ConnString { private set; get; }
+        private readonly IInterceptor interceptor;
+        private ILogger logger;
+        private Dispatcher dispatcher;
 
-        public OrderValidation(IRepositoryFactory<OrderEntity> orderFactory, string connectionString)
+        public OrderValidation(IRepositoryFactory<OrderEntity> orderFactory, string connectionString, Dispatcher dispatcher, ILogger logger)
         {
             ConnString = connectionString;
-             OrderRepository = orderFactory.CreateRepository(ConnString, "OrderRepository");
+            OrderRepository = orderFactory.CreateRepository(ConnString, "OrderRepository");
+            this.interceptor = interceptor;
+            this.logger = logger;
+            this.dispatcher = dispatcher;
         }
 
         public OrderValidationStatus ValidateOrder(string accName,string custName, List<ProductEntity> products)
         {
+            
+            logger.Message = "Starting Validation On Order";
+            dispatcher.interceptors.ForEach(f => f.Intercept(logger));
+
             var orderValidationStatus = new OrderValidationStatus() {IsValid = false};
 
             if (accName.Equals(null) || custName.Equals(null) || products.Equals(null)) return orderValidationStatus;
@@ -35,24 +46,38 @@ namespace PharmacySystemBusinessLogic.Order
             var accountName = accName.Trim();
             var customerName = custName.Trim();
 
+            logger.Message = "Validate Account";
+            dispatcher.interceptors.ForEach(f => f.Intercept(logger));
 
             var account = ValidateAccountEntity(accountName);
+            
 
             if (account == null)
                 return orderValidationStatus;
+
+            logger.Message = "Validate Customer";
+            dispatcher.interceptors.ForEach(f => f.Intercept(logger));
 
             var customer = ValidateCustomerEntity(customerName);
 
             if (customer == null)
                 return orderValidationStatus;
 
+            logger.Message = "Validate Products";
+            dispatcher.interceptors.ForEach(f => f.Intercept(logger));
             if (ValidateProducts(products))
             {
+                
                 PriceCalculation pricing = new PriceCalculation(products,customer);
+                logger.Message = "Calculating Total Price For Products";
+                dispatcher.interceptors.ForEach(f => f.Intercept(logger));
                 var totalCost = pricing.CalculateTotalCostOfProducts();
+                logger.Message = ("Calculating Discounts");
+                dispatcher.interceptors.ForEach(f => f.Intercept(logger));
                 totalCost = pricing.CalculateDiscounts(totalCost);
 
                 orderValidationStatus.IsValid = true;
+
                 orderValidationStatus.OrderEntity = new OrderEntity()
                 {
                     CustomerEntity = customer,
@@ -61,9 +86,11 @@ namespace PharmacySystemBusinessLogic.Order
                     OrderId = ObjectId.GenerateNewId().ToString(),
                     OrderType = FinalOrderType.Completed,
                     Products = products,
-                    TotalCost = totalCost
+                    TotalCost = totalCost,
+                    Interceptions = logger.LogList
                 };
 
+                
                 return orderValidationStatus;
             }
             return orderValidationStatus;
@@ -71,6 +98,7 @@ namespace PharmacySystemBusinessLogic.Order
 
         public bool AddOrderToRepository(OrderEntity orderEntity)
         {
+           
             try
             {
                 OrderRepository.Add(orderEntity);

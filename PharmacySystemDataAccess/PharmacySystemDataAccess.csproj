@@ -9,5 +9,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+    <PackageReference Include="Unity" Version="5.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Unity.Interception">
+      <HintPath>..\packages\Unity.5.0.1\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
