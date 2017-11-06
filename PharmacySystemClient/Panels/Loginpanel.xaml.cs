@@ -61,11 +61,7 @@ namespace PharmacySystemClient
                 else
                 {
                     MessageBox.Show("Account not valid! " + response.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
-                    UIRemote remote = new UIRemote();
-                    ViewMainMenu viewMenu = new ViewMainMenu();
-                    remote.SetCommand(viewMenu);
-                    remote.ExecuteCommand();
-                    this.Close();
+                  
                 }
             }
             else

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Windows;
@@ -25,7 +26,10 @@ namespace PharmacySystemClient.Command
         {
             string json = ConvertToJson(Username, Password);
             Console.WriteLine(json);
+
             var request = WebRequest.Create("http://localhost:8080/api/Account");
+            request.Timeout = Timeout.Infinite;
+           // request.KeepAlive = true;
             request.Method = "POST";
             request.ContentType = "application/json; charset=UTF-8";
 
@@ -52,7 +56,7 @@ namespace PharmacySystemClient.Command
             StreamReader reader = new StreamReader(dataStream);
             // Read the content.
             string responseFromServer = reader.ReadToEnd();
-            AccountResponse accountResponse = Json.Decode(responseFromServer);
+            AccountResponse accountResponse = Json.Decode<AccountResponse>(responseFromServer);
 
             // Display the content.
             Console.WriteLine(responseFromServer);

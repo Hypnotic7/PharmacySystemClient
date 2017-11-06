@@ -10,17 +10,12 @@ using System.Web.Helpers;
 
 namespace PharmacySystemClient
 {
-    class Order
+    interface IOrder
     {
-        public Order()
-        {
-
-        }
-
-        interface IOrder
-        {
-            bool GetProducts();
-        }
+        ProductResponse GetProducts();
+    }
+    class Order : IOrder
+    {
 
         //************************************* Change URL and write in json
         public ProductResponse GetProducts() 
