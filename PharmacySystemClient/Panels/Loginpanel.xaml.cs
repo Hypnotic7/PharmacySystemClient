@@ -51,7 +51,6 @@ namespace PharmacySystemClient
                 bool check = response.IsValid;
                 if (check == true)
                 {
-                    MessageBox.Show("Account Valid!","Alert", MessageBoxButton.OK, MessageBoxImage.Error);
                     UIRemote remote = new UIRemote();
                     ViewMainMenu viewMenu = new ViewMainMenu();
                     remote.SetCommand(viewMenu);
