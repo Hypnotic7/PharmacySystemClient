@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PharmacySystemClient
 {
-    class ProductResponse
+    class SchemesCards
     {
-        public bool GotAllProducts { get; set; }
-        public List<ProductEntity> ProductEntities { get; set; }
+        public bool MedicalCard { get; set; }
+        public bool DrugScheme { get; set; }
     }
 }

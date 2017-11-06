@@ -17,58 +17,16 @@ namespace PharmacySystemClient
     class Order : IOrder
     {
 
-        //************************************* Change URL and write in json
         public ProductResponse GetProducts() 
         {
-            // string json = ConvertToJson(Username, Password);
-            string item = "";
-
-            var request = WebRequest.Create("http://localhost:8080/api/Product"); 
-            request.Method = "GET";
-            request.ContentType = "application/json; charset=UTF-8";
-
-            //// Get the request stream.
-            //var dataStream = request.GetRequestStream();
-            //// Write the data to the request stream.
-            //using (var writer = new StreamWriter(dataStream))
-            //{
-            //    writer.Write(item);
-            //}
-
-            //// Close the Stream object.
-            //dataStream.Close();
-
-            //// Get the response.
-            var response = request.GetResponse();
-            //// Display the status.
-            //Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-            // Get the stream containing content returned by the server.
-           var dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = reader.ReadToEnd();
-           ProductResponse productResponse = Json.Decode<ProductResponse>(responseFromServer);
-
-            // Display the content.
-            Console.WriteLine(responseFromServer);
-            // Clean up the streams.
-            reader.Close();
-            dataStream.Close();
-
-            return productResponse;
-        }
-
-        private string ConvertToJson(string name, string password)
-        {
-            var obj = new Accounts
+           
+            string responseFromServer;
+            using (WebClient client = new WebClient())
             {
-                AccountName = name,
-                AccountPassword = password
-            };
-            string json = JsonConvert.SerializeObject(obj);
-
-            return json;
+                responseFromServer = client.DownloadString("http://localhost:8080/api/Product");
+            }
+            ProductResponse productResponse = Json.Decode<ProductResponse>(responseFromServer);
+            return productResponse;
         }
 
     }

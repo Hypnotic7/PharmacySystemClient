@@ -6,12 +6,22 @@
         xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
         Title="OrderPanel" Height="300" Width="300">
-    <Grid>
-        <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="100" Margin="49,83,0,0" VerticalAlignment="Top" Width="59" />
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="146,83,0,0" VerticalAlignment="Top" Width="60"/>
+    <Grid Margin="0,10,-243,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="246*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="121" Margin="15,49,0,0" VerticalAlignment="Top" Width="100" />
         <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="167,217,0,0" VerticalAlignment="Top" Width="67" />
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,176,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click"/>
-        <TextBlock HorizontalAlignment="Left" Height="22" Margin="49,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="Customer "/><Run Text="name :"/></TextBlock>
-        <TextBox x:Name="CustomerTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="149,9,0,0"/>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,174,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="Customer "/><Run Text="name :"/></TextBlock>
+        <TextBox x:Name="CustomerTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Margin="105,9,0,0"/>
+        <Button Content="Find Existing" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <ListBox x:Name="Cart" HorizontalAlignment="Left" Height="121" Margin="167,49,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="CostLabel" Text="Total Cost: " HorizontalAlignment="Left" Height="21" Margin="182,184,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBlock x:Name="Price" Text="€0.00" HorizontalAlignment="Left" Height="21" Margin="242,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39"/>
+        <TextBox x:Name="Quantity" HorizontalAlignment="Left" Height="21" Margin="60,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" />
+        <TextBlock x:Name="QuantityLabel" HorizontalAlignment="Left" Height="18" Margin="7,187,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="AddToCart" Content="Add To Cart" HorizontalAlignment="Left" Height="21" Margin="96,184,0,0" VerticalAlignment="Top" Width="81" Click="AddToCart_Click"/>
     </Grid>
 </Window>

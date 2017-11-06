@@ -4,30 +4,28 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Helpers;
-using System.Windows;
 using Newtonsoft.Json;
+using PharmacySystemClient;
 
-namespace PharmacySystemClient.Command
+namespace PharmacySystemClient
 {
-    interface ILogin
+    interface ICustomer
     {
-        AccountResponse ValidateLogin();
+        CustomerResponse GetCustomer();
     }
-
-    class Login : ILogin
+    class Customer : ICustomer
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public AccountResponse ValidateLogin()
+        public CustomerResponse GetCustomer()
         {
-            string json = ConvertToJson(Username, Password);
+            string json = ConvertToJson(FirstName, LastName);
             Console.WriteLine(json);
 
-            var request = WebRequest.Create("http://localhost:8080/api/Account");
+            var request = WebRequest.Create("http://localhost:8080/api/Customer");
             request.Method = "POST";
             request.ContentType = "application/json; charset=UTF-8";
 
@@ -54,30 +52,27 @@ namespace PharmacySystemClient.Command
             StreamReader reader = new StreamReader(dataStream);
             // Read the content.
             string responseFromServer = reader.ReadToEnd();
-            AccountResponse accountResponse = Json.Decode<AccountResponse>(responseFromServer);
+            CustomerResponse customerResponse = Json.Decode<CustomerResponse>(responseFromServer);
 
             // Display the content.
             Console.WriteLine(responseFromServer);
             // Clean up the streams.
             reader.Close();
             dataStream.Close();
-            return accountResponse;
+            return customerResponse;
         }
 
-        private string ConvertToJson(string name, string password )
+        private string ConvertToJson(string firstName, string lastName)
         {
-            var obj = new AccountRequest()
+            var obj = new Customer()
             {
-                AccountName = name,
-                AccountPassword = password
+                FirstName = firstName,
+                LastName = lastName
             };
             string json = JsonConvert.SerializeObject(obj);
 
             return json;
         }
     }
-}
-
-  
     
-
+}
