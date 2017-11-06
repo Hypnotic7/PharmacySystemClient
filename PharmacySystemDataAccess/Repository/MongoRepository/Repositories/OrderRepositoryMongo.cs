@@ -18,7 +18,15 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
         
         public void Add(OrderEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<OrderEntity>(CollectionName);
+                collection.InsertOne(entity);
+            }
+            catch (Exception e)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public void Remove(OrderEntity entity)

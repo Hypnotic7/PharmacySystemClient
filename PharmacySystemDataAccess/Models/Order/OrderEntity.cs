@@ -13,13 +13,14 @@ namespace PharmacySystemDataAccess.Models.Order
         [BsonElement("_id")]
         [BsonRepresentation(BsonType.ObjectId)]
         public string OrderId { get; set; }
-        public CustomerEntity CustomerName { get; set; }
-        public AccountEntity EmployeeName { get; set; }
+        public CustomerEntity CustomerEntity { get; set; }
+        public AccountEntity AccountEntity { get; set; }
         public List<ProductEntity> Products { get; set; }
         public double TotalCost;
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime OrderDate{ get; set; }
         public FinalOrderType OrderType { get; set; }
+        public List<string> Interceptions { get; set; }
 
     }
 
