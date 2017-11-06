@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PharmacySystemAPI.Models.Product;
 using PharmacySystemBusinessLogic.Product;
-using PharmacySystemBusinessLogic.RepositoryFactory;
 using PharmacySystemDataAccess.Models.Product;
+using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemAPI.Controllers
 {
