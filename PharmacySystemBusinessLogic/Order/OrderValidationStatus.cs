@@ -2,7 +2,7 @@
 
 namespace PharmacySystemBusinessLogic.Order
 {
-    public class ProductValidationStatus
+    public class OrderValidationStatus
     {
         public bool IsValid { get; set; }
         public ProductEntity Product { get; set; }
