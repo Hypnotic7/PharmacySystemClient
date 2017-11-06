@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using PharmacySystemAPI.Models.Account;
 using PharmacySystemAPI.Models.Order;
-using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemBusinessLogic.Order;
-using PharmacySystemDataAccess.Models.Account;
-using PharmacySystemDataAccess.Models.Account.RepositoryFactory;
+using PharmacySystemBusinessLogic.Product;
+using PharmacySystemBusinessLogic.RepositoryFactory;
+using PharmacySystemDataAccess.Models.Order;
+
+
 
 namespace PharmacySystemAPI.Controllers
 {
@@ -19,14 +21,22 @@ namespace PharmacySystemAPI.Controllers
         {
             _appSettings = appSettings;
         }
-
         // POST api/values
         [HttpPost]
 
         public OrderResponse Post([FromBody]OrderRequest orderRequest)
         {
-            OrderValidation orderValidation;
+            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString);
 
+            try
+            {
+                var orderValidationStatus = orderValidation.ValidateOrder(orderRequest.AccountName,
+                    orderRequest.CustomerName, orderRequest.Products);
+            }
+            catch (Exception e)
+            {
+                throw new NotImplementedException();
+            }
             return new OrderResponse();
         }
     }

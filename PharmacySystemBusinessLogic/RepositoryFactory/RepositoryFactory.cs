@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using PharmacySystemDataAccess.Repository;
 using PharmacySystemDataAccess.Repository.MongoRepository;
+using PharmacySystemDataAccess.Repository.MongoRepository.Repositories;
 
 namespace PharmacySystemBusinessLogic.RepositoryFactory
 {

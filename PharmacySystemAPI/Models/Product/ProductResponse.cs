@@ -6,10 +6,9 @@ using PharmacySystemDataAccess.Models.Product;
 
 namespace PharmacySystemAPI.Models.Product
 {
-    public class ProductCollectionResponse
+    public class ProductResponse
     {
-        public bool IsValid { get; set; }
-        public string Message { get; set; }
-        public IEnumerable<OrderEntity> ProductCollection { get; set; }
+        public List<ProductEntity> ProductEntities;
+        public string Message;
     }
 }

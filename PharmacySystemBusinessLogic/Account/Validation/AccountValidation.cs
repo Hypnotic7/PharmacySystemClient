@@ -15,9 +15,9 @@ namespace PharmacySystemBusinessLogic.Account.Validation
             AccountRepository = accountFactory.CreateRepository(connectionString, "AccountRepository");
         }
 
-        public ProductValidationStatus ValidateAccount(string accountName, string password)
+        public AccountValidationStatus ValidateAccount(string accountName, string password, bool validateAccName = false)
         {
-            var accountValidationStatus = new ProductValidationStatus { IsValid = false };
+            var accountValidationStatus = new AccountValidationStatus { IsValid = false };
 
             if (accountName.Equals(string.Empty)) return accountValidationStatus;
             if (password.Equals(string.Empty)) return accountValidationStatus;
@@ -29,13 +29,16 @@ namespace PharmacySystemBusinessLogic.Account.Validation
 
             if (account.Equals(null)) return accountValidationStatus;
 
-            accountValidationStatus.IsValid = account.Password.Equals(EncryptionUtility.ComputePasswordHashValue(password));
-
-            if (accountValidationStatus.IsValid)
+            if (validateAccName)
             {
-                account.IsLoggedIn = !account.IsLoggedIn;
-                account.LastLoginDate = DateTime.Now;
-                //AccountRepository.Modify(account);
+                accountValidationStatus.IsValid = account.Password.Equals(EncryptionUtility.ComputePasswordHashValue(password));
+
+                if (accountValidationStatus.IsValid)
+                {
+                    account.IsLoggedIn = !account.IsLoggedIn;
+                    account.LastLoginDate = DateTime.Now;
+                    //AccountRepository.Modify(account);
+                }
             }
 
             accountValidationStatus.Account = account;
