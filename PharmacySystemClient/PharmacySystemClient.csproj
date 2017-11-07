@@ -115,27 +115,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AccountRequest.cs" />
-    <Compile Include="AccountResponse.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerEntity.cs" />
-    <Compile Include="CustomerRequest.cs" />
-    <Compile Include="CustomerResponse.cs" />
+    <Compile Include="Accounts\AccountRequest.cs" />
+    <Compile Include="Accounts\AccountResponse.cs" />
+    <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Customer\CustomerEntity.cs" />
+    <Compile Include="Customer\CustomerRequest.cs" />
+    <Compile Include="Customer\CustomerResponse.cs" />
     <Compile Include="Modify.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrescriptionEntity.cs" />
-    <Compile Include="ProductEntity.cs" />
-    <Compile Include="ProductResponse.cs" />
-    <Compile Include="SchemesCards.cs" />
+    <Compile Include="Prescription\PrescriptionEntity.cs" />
+    <Compile Include="Products\ProductEntity.cs" />
+    <Compile Include="Products\ProductResponse.cs" />
+    <Compile Include="Products\SchemesCards.cs" />
     <Compile Include="UICommand.cs" />
     <Page Include="Panels\Loginpanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AccountEntity.cs" />
+    <Compile Include="Accounts\AccountEntity.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
