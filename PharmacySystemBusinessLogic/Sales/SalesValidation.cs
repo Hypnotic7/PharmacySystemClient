@@ -33,6 +33,5 @@ namespace PharmacySystemBusinessLogic.Sales
         {
             SalesRepository.Modify(salesEntity);
         }
-
     }
 }

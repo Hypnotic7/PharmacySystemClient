@@ -30,7 +30,5 @@ namespace PharmacySystemBusinessLogic.Perscription
 
             return prescriptionValidationStatus;
         }
-
-
     }
 }

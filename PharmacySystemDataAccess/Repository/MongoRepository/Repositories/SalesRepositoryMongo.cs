@@ -38,10 +38,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
             {
                 throw new NotImplementedException();
             }
-
         }
-
-       
 
         public SalesEntity Find(string saleType)
         {
@@ -57,54 +54,3 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
         }
     }
 }
-
-/*public SalesEntity Find(int saleType)
-{
-    try
-    {
-        var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<ProductEntity>(CollectionName);
-        var product = collection.Find(f => f.ProductName.Equals(productName)).FirstOrDefault();
-
-        if (product != null)
-            return new ProductEntity()
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Price = product.Price,
-                Quantity = product.Quantity,
-                RequiresPrescription = product.RequiresPrescription,
-                Container = product.Container
-            };
-    }
-    catch (Exception e)
-    {
-        throw new KeyNotFoundException($"Product not found: {productName}");
-    }
-
-    throw new KeyNotFoundException($"Product Name not found: {productName}");
-
-    throw new NotImplementedException();
-}
-
-
-public SalesRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
-{
-    throw new NotImplementedException();
-}
-
-
-
-public List<SalesEntity> FindAll()
-{
-    try
-    {
-        var collection = Connect(DataAccessConstants.DatabaseName).GetCollection<SalesEntity>(CollectionName);
-        return collection.Find(new BsonDocument()).ToList();
-    }
-    catch (Exception e)
-    {
-        throw new NotImplementedException();
-    }
-}
-}
-}*/

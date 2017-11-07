@@ -10,6 +10,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
     {
         public string CollectionName => "Products";
         public static readonly Func<string, ProductRepositoryMongo> ProductRepository = c => new ProductRepositoryMongo(new MongoClient(c));
+
         public void Add(ProductEntity entity)
         {
             throw new NotImplementedException();
@@ -33,7 +34,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
             {
                 throw new NotImplementedException();
             }
-            
         }
 
         public ProductEntity Find(string productName)
@@ -65,7 +65,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         public ProductRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-           
         }
 
        

@@ -7,6 +7,7 @@ namespace PharmacySystemDataAccess.Models.Product
     {
         [BsonElement("_id")]
         [BsonRepresentation(BsonType.ObjectId)]
+
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public double Price { get; set; }

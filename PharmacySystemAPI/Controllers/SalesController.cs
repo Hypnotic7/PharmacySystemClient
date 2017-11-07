@@ -18,7 +18,6 @@ namespace PharmacySystemAPI.Controllers
             _appSettings = appSettings;
         }
 
-
         // GET api/values
         [HttpGet]
         public SalesResponse GetSales()
@@ -30,8 +29,7 @@ namespace PharmacySystemAPI.Controllers
                 var salesValidationStatus = salesValidation.GetAllSales();
                 return new SalesResponse()
                 {
-                    Message = "Here are all Sales broken into 3 categories:" +
-                              "Regular | Using Medical Card | Using Drug Scheme",
+                    Message = "",
                     SalesEntity = salesValidationStatus.SalesEntity
                 };
             }
@@ -42,11 +40,7 @@ namespace PharmacySystemAPI.Controllers
                     Message = keyNotFound.Message,
                     SalesEntity = null
                 };
-
             }
-
         }
-
-
     }
 }

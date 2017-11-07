@@ -31,6 +31,7 @@ namespace PharmacySystemBusinessLogic.Pricing
         public double CalculateDiscounts(double totalPriceForProducts)
         {
             var totalPrice = totalPriceForProducts;
+
             if (CustomerEntity.SchemesCards.DrugScheme)
             {
                 if (totalPriceForProducts > 100)
@@ -38,6 +39,7 @@ namespace PharmacySystemBusinessLogic.Pricing
                    totalPrice -= Math.Round(totalPrice * .6, 2);
                 }
             }
+
             else if(CustomerEntity.SchemesCards.MedicalCard)
             {
                 return totalPrice = 0;

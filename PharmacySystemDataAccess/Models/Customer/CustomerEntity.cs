@@ -8,9 +8,12 @@ namespace PharmacySystemDataAccess.Models.Customer
     {
         [BsonElement("_id")]
         [BsonRepresentation(BsonType.ObjectId)]
+
         public string CustomerId { get; set; }
         public string CustomerName { get; set; }
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public int PhoneNumber { get; set; }

@@ -31,6 +31,7 @@ namespace PharmacySystemBusinessLogic.Product
                     ProductEntities = products
                 };
             }
+
             return null;
         }
 
@@ -45,8 +46,8 @@ namespace PharmacySystemBusinessLogic.Product
 
                 if (product.Container.Equals("bottle"))
                     containers.Add(new BottleElement(product.Quantity));
-
             }
+
             var weight = CalculateWeight(containers);
             return CalculateAmount(containers);
         }
@@ -93,6 +94,7 @@ namespace PharmacySystemBusinessLogic.Product
                     }
                 }
             }
+
             return inStock;
         }
 
@@ -109,8 +111,5 @@ namespace PharmacySystemBusinessLogic.Product
             
             return true;
         }
-
-
-
     }
 }

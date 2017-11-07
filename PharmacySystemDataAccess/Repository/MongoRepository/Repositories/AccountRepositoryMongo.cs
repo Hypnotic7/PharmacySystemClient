@@ -12,7 +12,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         private AccountRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-
         }
 
         public void Add(AccountEntity entity)
@@ -55,7 +54,5 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

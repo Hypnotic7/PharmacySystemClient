@@ -6,6 +6,5 @@ namespace PharmacySystemBusinessLogic.Order
     {
         public bool IsValid { get; set; }
         public OrderEntity OrderEntity { get; set; }
-
     }
 }

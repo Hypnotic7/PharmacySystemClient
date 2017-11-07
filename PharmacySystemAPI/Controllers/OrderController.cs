@@ -13,16 +13,15 @@ namespace PharmacySystemAPI.Controllers
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
-
         private IOptions<AppSettings> _appSettings;
 
         public OrderController(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings;
         }
+
         // POST api/values
         [HttpPost]
-
         public OrderResponse Post([FromBody]OrderRequest orderRequest)
         {
             Dispatcher dispatcher = new Dispatcher();
@@ -33,7 +32,6 @@ namespace PharmacySystemAPI.Controllers
             {
                 var orderValidationStatus = orderValidation.ValidateOrder(orderRequest.AccountName,
                    orderRequest.CustomerName, orderRequest.Products);
-
                 orderValidation.AddOrderToRepository(orderValidationStatus.OrderEntity);
                 return new OrderResponse()
                 {

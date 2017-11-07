@@ -29,7 +29,6 @@ namespace PharmacySystemDataAccess.Repository.RepositoryFactory
 
                 default:
                     throw new ArgumentException(type + " Could not be found");
-
             }
         }
     }

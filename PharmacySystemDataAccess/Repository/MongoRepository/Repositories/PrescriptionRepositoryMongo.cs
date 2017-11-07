@@ -51,7 +51,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         public PrescriptionRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-
         }
     }
 }

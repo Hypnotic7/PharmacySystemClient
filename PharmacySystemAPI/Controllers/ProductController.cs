@@ -18,7 +18,6 @@ namespace PharmacySystemAPI.Controllers
             _appSettings = appSettings;
         }
 
-
         // GET api/values
         [HttpGet]
         public ProductResponse GetProducts()
@@ -41,11 +40,7 @@ namespace PharmacySystemAPI.Controllers
                     Message = keyNotFound.Message,
                     ProductEntities = null
                 };
-
             }
-            
         }
-
-
     }
 }

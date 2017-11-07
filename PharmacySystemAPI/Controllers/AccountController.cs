@@ -20,7 +20,6 @@ namespace PharmacySystemAPI.Controllers
 
         // POST api/values
         [HttpPost]
-     
         public AccountResponse Post([FromBody]AccountRequest accountRequest)
         {
             AccountValidation accountValidation = new AccountValidation(new RepositoryFactory<AccountEntity>(), _appSettings.Value.MongoConnectionString);
@@ -29,6 +28,7 @@ namespace PharmacySystemAPI.Controllers
             {
                 var accountValidationStatus = accountValidation.ValidateAccount(accountRequest.AccountName, accountRequest.AccountPassword);
                 var returnMessage = accountValidationStatus.IsValid ? $@"{accountValidationStatus.Account.AccountName} has been found" : $@"{accountValidationStatus.Account.AccountName} Not Found";
+
                 return new AccountResponse()
                 {
                     IsValid = accountValidationStatus.IsValid,
@@ -45,6 +45,5 @@ namespace PharmacySystemAPI.Controllers
                 };
             }
         }
-
     }
 }
