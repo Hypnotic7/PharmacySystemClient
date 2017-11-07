@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using PharmacySystemDataAccess.Models;
-using PharmacySystemDataAccess.Models.Account;
-
 namespace PharmacySystemBusinessLogic.Utilities.Encryption
 {
     public class EncryptionUtility

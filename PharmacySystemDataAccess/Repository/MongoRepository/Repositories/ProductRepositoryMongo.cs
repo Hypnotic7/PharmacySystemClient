@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using PharmacySystemDataAccess.Models.Account;
-using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Models.Product;
 
 namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories

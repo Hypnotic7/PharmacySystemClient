@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PharmacySystemDataAccess.Repository
+﻿namespace PharmacySystemDataAccess.Repository
 {
     public interface IDataAccess<T>
     {

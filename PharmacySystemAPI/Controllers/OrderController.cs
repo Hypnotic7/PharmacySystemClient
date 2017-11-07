@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using PharmacySystemAPI.Models.Order;
 using PharmacySystemBusinessLogic.Interceptor;
 using PharmacySystemBusinessLogic.Order;
-using PharmacySystemBusinessLogic.Product;
 using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
@@ -28,7 +27,7 @@ namespace PharmacySystemAPI.Controllers
         {
             Dispatcher dispatcher = new Dispatcher();
             dispatcher.RegisterInterceptor(new LoggerInterceptor());
-            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString,dispatcher, new Logger());
+            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString, dispatcher, new Logger());
 
             try
             {

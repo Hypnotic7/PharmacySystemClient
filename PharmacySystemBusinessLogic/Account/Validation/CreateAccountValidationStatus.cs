@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PharmacySystemBusinessLogic.Account.Validation
+﻿namespace PharmacySystemBusinessLogic.Account.Validation
 {
     public class CreateAccountValidationStatus
     {

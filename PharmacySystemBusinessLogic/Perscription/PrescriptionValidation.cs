@@ -1,6 +1,4 @@
-﻿using System;
-using PharmacySystemDataAccess.Models.Prescription;
-using PharmacySystemDataAccess.Models.Product;
+﻿using PharmacySystemDataAccess.Models.Prescription;
 using PharmacySystemDataAccess.Repository;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 

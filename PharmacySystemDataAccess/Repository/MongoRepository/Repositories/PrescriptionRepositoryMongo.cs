@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using MongoDB.Driver;
-using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Models.Prescription;
 
 namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories

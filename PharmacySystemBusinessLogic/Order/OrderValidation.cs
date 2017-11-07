@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Bson;
 using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemBusinessLogic.Customer;
-using PharmacySystemBusinessLogic.Interceptor;
 using PharmacySystemBusinessLogic.Pricing;
+using PharmacySystemBusinessLogic.Interceptor;
 using PharmacySystemBusinessLogic.Product;
+using PharmacySystemBusinessLogic.Sales;
 using PharmacySystemDataAccess.Models.Account;
 using PharmacySystemDataAccess.Models.Customer;
 using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Models.Product;
+using PharmacySystemDataAccess.Models.Sales;
 using PharmacySystemDataAccess.Repository;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
@@ -35,7 +36,6 @@ namespace PharmacySystemBusinessLogic.Order
 
         public OrderValidationStatus ValidateOrder(string accName,string custName, List<ProductEntity> products)
         {
-            
             logger.Message = "Starting Validation On Order";
             dispatcher.interceptors.ForEach(f => f.Intercept(logger));
 
@@ -50,7 +50,6 @@ namespace PharmacySystemBusinessLogic.Order
             dispatcher.interceptors.ForEach(f => f.Intercept(logger));
 
             var account = ValidateAccountEntity(accountName);
-            
 
             if (account == null)
                 return orderValidationStatus;
@@ -67,7 +66,6 @@ namespace PharmacySystemBusinessLogic.Order
             dispatcher.interceptors.ForEach(f => f.Intercept(logger));
             if (ValidateProducts(products))
             {
-                
                 PriceCalculation pricing = new PriceCalculation(products,customer);
                 logger.Message = "Calculating Total Price For Products";
                 dispatcher.interceptors.ForEach(f => f.Intercept(logger));
@@ -90,7 +88,17 @@ namespace PharmacySystemBusinessLogic.Order
                     Interceptions = logger.LogList
                 };
 
-                
+                SalesValidation salesValidation = new SalesValidation(new RepositoryFactory<SalesEntity>(), ConnString);
+                var salesEntity = salesValidation.GetAllSales();
+                if (orderValidationStatus.OrderEntity.CustomerEntity.SchemesCards.DrugScheme)
+                    salesEntity.SalesEntity.DrugSchemeSales++;
+                else if (orderValidationStatus.OrderEntity.CustomerEntity.SchemesCards.MedicalCard)
+                    salesEntity.SalesEntity.MedicalCardSales++;
+                else
+                    salesEntity.SalesEntity.RegularSales++;
+
+                salesValidation.UpdateSales(salesEntity.SalesEntity);
+
                 return orderValidationStatus;
             }
             return orderValidationStatus;
@@ -98,7 +106,7 @@ namespace PharmacySystemBusinessLogic.Order
 
         public bool AddOrderToRepository(OrderEntity orderEntity)
         {
-           
+
             try
             {
                 OrderRepository.Add(orderEntity);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PharmacySystemDataAccess.Models.Customer;
+﻿using PharmacySystemDataAccess.Models.Customer;
 using PharmacySystemDataAccess.Models.Prescription;
 
 namespace PharmacySystemAPI.Models.Customer
