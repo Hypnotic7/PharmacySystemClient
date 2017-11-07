@@ -117,6 +117,10 @@
     </ApplicationDefinition>
     <Compile Include="Accounts\AccountRequest.cs" />
     <Compile Include="Accounts\AccountResponse.cs" />
+    <Compile Include="Checkout\Checkout.cs" />
+    <Compile Include="Checkout\OrderEntity.cs" />
+    <Compile Include="Checkout\OrderRequest.cs" />
+    <Compile Include="Checkout\OrderResponse.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\CustomerEntity.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
@@ -130,7 +134,7 @@
     <Compile Include="Products\ProductEntity.cs" />
     <Compile Include="Products\ProductResponse.cs" />
     <Compile Include="Products\SchemesCards.cs" />
-    <Compile Include="UICommand.cs" />
+    <Compile Include="UIRemote.cs" />
     <Page Include="Panels\Loginpanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,5 +209,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

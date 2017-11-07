@@ -33,6 +33,7 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
                         AccountId = account.AccountId,
                         AccountName = account.AccountName,
                         Password = account.Password,
+                        AccountType = account.AccountType,
                         IsLoggedIn = account.IsLoggedIn,
                         LastLoginDate = account.LastLoginDate
                     };

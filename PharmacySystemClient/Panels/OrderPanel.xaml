@@ -12,7 +12,7 @@
             <ColumnDefinition Width="246*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="121" Margin="15,49,0,0" VerticalAlignment="Top" Width="100" />
-        <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="167,217,0,0" VerticalAlignment="Top" Width="67" />
+        <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="167,217,0,0" VerticalAlignment="Top" Width="67" Click="CheckoutBtn_Click" />
         <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,174,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="Customer "/><Run Text="name :"/></TextBlock>
         <TextBox x:Name="CustomerTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Margin="105,9,0,0"/>

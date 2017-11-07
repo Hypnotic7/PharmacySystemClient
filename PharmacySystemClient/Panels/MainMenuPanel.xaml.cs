@@ -20,6 +20,8 @@ namespace PharmacySystemClient
     public partial class MainMenu : Window
     {
         private string loggedInAs;
+        public AccountResponse Response;
+
         public MainMenu()
         {
             InitializeComponent();
@@ -30,8 +32,8 @@ namespace PharmacySystemClient
         {
 
             UIRemote remote = new UIRemote();
-            ViewMainMenu viewMenu = new ViewMainMenu();
-            ViewOrder viewOrder = new ViewOrder();
+            ViewMainMenu viewMenu = new ViewMainMenu(Response);
+            ViewOrder viewOrder = new ViewOrder(Response);
             ViewModify modify = new ViewModify();
             ViewSales sales = new ViewSales();
             ViewLogin login = new ViewLogin();

@@ -28,6 +28,7 @@ namespace PharmacySystemClient
     {
         private string username;
         private string password;
+    
 
         public Loginwindow()
         {
@@ -52,7 +53,7 @@ namespace PharmacySystemClient
                 if (check == true)
                 {
                     UIRemote remote = new UIRemote();
-                    ViewMainMenu viewMenu = new ViewMainMenu();
+                    ViewMainMenu viewMenu = new ViewMainMenu(response);
                     remote.SetCommand(viewMenu);
                     remote.ExecuteCommand();
                     this.Close();

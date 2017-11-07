@@ -18,7 +18,7 @@ namespace PharmacySystemClient
     class UIRemote
     {
          ICommand icommand;
-
+        
         public UIRemote()
         {
             
@@ -35,13 +35,33 @@ namespace PharmacySystemClient
 
     class ViewMainMenu : ICommand
     {
-        private MainMenu mainMenu = new MainMenu();
+       
         private Window window;
+        private AccountResponse Response { get; }
+        private MainMenu mainMenu;
+
+        public ViewMainMenu(AccountResponse response)
+        {
+            Response = response;
+             mainMenu = new MainMenu();
+            mainMenu.Response = Response;
+
+        }
 
         public void Execute()
         {
-            window = mainMenu;
-            window.Show();
+            if (Response.Account.AccountType == AccountTypeEnum.Employee)
+            {
+                window = mainMenu;
+                mainMenu.ShowEmployeeMenu();
+                window.Show();
+            }
+            else
+            {
+                window = mainMenu;
+                window.Show();
+            }
+         
         }
 
         public void Undo()
@@ -68,9 +88,17 @@ namespace PharmacySystemClient
 
     class ViewOrder : ICommand
     {
-        private OrderPanel order = new OrderPanel();
-        private MainMenu menu = new MainMenu();
+        private OrderPanel order;
+        private MainMenu menu;
         private Window window;
+        private AccountResponse Response;
+
+        public ViewOrder(AccountResponse response)
+        {
+            Response = response;
+            order = new OrderPanel();
+            order.accountResponse = response;
+        }
 
         public void Execute()
         {
@@ -80,6 +108,7 @@ namespace PharmacySystemClient
 
         public void Undo()
         {
+            menu = new MainMenu();
             window = menu;
             window.Show();
         }

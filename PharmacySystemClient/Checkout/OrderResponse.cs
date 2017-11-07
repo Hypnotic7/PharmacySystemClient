@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PharmacySystemClient
+namespace PharmacySystemClient.Checkout
 {
-    public class AccountResponse
+    class OrderResponse
     {
-        public bool IsValid { get; set; }
+        public bool OrderComplete { get; set; }
         public string Message { get; set; }
-        public AccountEntity Account { get; set; }
+        public OrderEntity OrderEntity { get; set; }
     }
-
 }

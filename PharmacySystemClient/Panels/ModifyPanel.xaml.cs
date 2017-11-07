@@ -27,8 +27,8 @@ namespace PharmacySystemClient
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             UIRemote remote = new UIRemote();
-            ViewMainMenu viewMenu = new ViewMainMenu();
-            remote.SetCommand(viewMenu);
+           // ViewMainMenu viewMenu = new ViewMainMenu();
+            //remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
             this.Close();
         }

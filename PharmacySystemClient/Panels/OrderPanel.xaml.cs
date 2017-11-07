@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PharmacySystemClient.Checkout;
 
 namespace PharmacySystemClient
 {
@@ -22,6 +23,7 @@ namespace PharmacySystemClient
     {
         private static double cost;
         private ProductResponse productResponse;
+        public AccountResponse accountResponse { get; set; }
         public OrderPanel()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace PharmacySystemClient
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             UIRemote remote = new UIRemote();
-            ViewMainMenu viewMenu = new ViewMainMenu();
+            ViewMainMenu viewMenu = new ViewMainMenu(accountResponse);
             remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
             this.Close();
@@ -46,7 +48,6 @@ namespace PharmacySystemClient
             {
                 ProductList.Items.Add(product.ProductName + " " + product.Price);
             }
-        
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -119,6 +120,44 @@ namespace PharmacySystemClient
                 Price.Text = cost.ToString();
                 Quantity.Text = "";
                 ProductList.UnselectAll();
+            }
+        }
+
+        private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Cart.Items.IsEmpty)
+            {
+                List<ProductEntity> listOfProducts = new List<ProductEntity>();
+                string[] productName;
+                string  customerName = CustomerTextBox.Text;
+                string accountName = accountResponse.Account.AccountName;
+
+                foreach (var products in Cart.Items)
+                {
+                    productName = products.ToString().Split(' ');
+                    foreach (var item in productResponse.ProductEntities)
+                    {
+                        if (item.ProductName.Equals(productName[0]))
+                        {
+                            var tmp = item;
+                            tmp.Quantity = Convert.ToInt32(productName[1].Substring(1));
+                            listOfProducts.Add(tmp);
+                        }
+                    }
+                }
+                Checkout.Checkout checkout = new Checkout.Checkout();
+                checkout.accountName = accountName;
+                checkout.customerName = customerName;
+                checkout.products = listOfProducts;
+                OrderResponse response = checkout.ValidateOrder();
+                if (response.OrderComplete)
+                {
+                    Console.WriteLine("Order Valid");
+                    var cost = response.OrderEntity.TotalCost;
+                    string result = "Name:\t" + customerName + "\nEmployee Name:\t" + accountName + "\nProducts:\t" + Cart.Items.ToString() + "\nTotal Cost:\t" +
+                                    cost;
+                    MessageBox.Show(result, "Transaction Complete");
+                }
             }
         }
     }
