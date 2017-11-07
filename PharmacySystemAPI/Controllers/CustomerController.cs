@@ -39,6 +39,7 @@ namespace PharmacySystemAPI.Controllers
 
                 returnMessage = prescriptionValidationStatus.IsValid ? returnMessage + $@"\nPrescription for {prescriptionValidationStatus.Prescription.CustomerName} has been found" :
                                                                        returnMessage + $@"\nPrescription for {prescriptionValidationStatus.Prescription.CustomerName} Not Found";
+
                 if (prescriptionValidationStatus.IsValid)
                 {
                     return new CustomerResponse()
@@ -64,8 +65,6 @@ namespace PharmacySystemAPI.Controllers
                     Message = keyNotFound.Message
                 };
             }
-
-
         }
     }
 }

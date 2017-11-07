@@ -7,6 +7,7 @@ namespace PharmacySystemDataAccess.Models.Sales
     {
         [BsonElement("_id")]
         [BsonRepresentation(BsonType.ObjectId)]
+
         public string SalesId { get; set; }
         public int RegularSales { get; set; }
         public int MedicalCardSales { get; set; }

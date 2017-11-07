@@ -7,10 +7,12 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository
     {
         private IMongoClient _MongoClient { get; set; }
         private IMongoDatabase _MongoDatabase { get; set; }
+
         public MongoRepository(IMongoClient mongoClient)
         {
             _MongoClient = mongoClient;
         }
+
         public MongoRepository Connect(string databaseName, MongoDatabaseSettings mongoDatabaseSettings = null)
         {
             _MongoDatabase = _MongoClient.GetDatabase(databaseName, mongoDatabaseSettings);

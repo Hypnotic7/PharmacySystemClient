@@ -7,6 +7,7 @@ namespace PharmacySystemDataAccess.Models.Prescription
     {
         [BsonElement("_id")]
         [BsonRepresentation(BsonType.ObjectId)]
+
         public string PrescriptionId { get; set; }
         public string CustomerName { get; set; }
         public string GpName { get; set; }

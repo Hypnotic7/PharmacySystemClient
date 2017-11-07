@@ -64,6 +64,7 @@ namespace PharmacySystemBusinessLogic.Order
 
             logger.Message = "Validate Products";
             dispatcher.interceptors.ForEach(f => f.Intercept(logger));
+
             if (ValidateProducts(products))
             {
                 PriceCalculation pricing = new PriceCalculation(products,customer);
@@ -90,10 +91,13 @@ namespace PharmacySystemBusinessLogic.Order
 
                 SalesValidation salesValidation = new SalesValidation(new RepositoryFactory<SalesEntity>(), ConnString);
                 var salesEntity = salesValidation.GetAllSales();
+
                 if (orderValidationStatus.OrderEntity.CustomerEntity.SchemesCards.DrugScheme)
                     salesEntity.SalesEntity.DrugSchemeSales++;
+
                 else if (orderValidationStatus.OrderEntity.CustomerEntity.SchemesCards.MedicalCard)
                     salesEntity.SalesEntity.MedicalCardSales++;
+
                 else
                     salesEntity.SalesEntity.RegularSales++;
 
@@ -101,12 +105,12 @@ namespace PharmacySystemBusinessLogic.Order
 
                 return orderValidationStatus;
             }
+
             return orderValidationStatus;
         }
 
         public bool AddOrderToRepository(OrderEntity orderEntity)
         {
-
             try
             {
                 OrderRepository.Add(orderEntity);
@@ -116,7 +120,6 @@ namespace PharmacySystemBusinessLogic.Order
             {
                 return false;
             }
-            
         }
 
         private AccountEntity ValidateAccountEntity(string accName)
@@ -148,14 +151,15 @@ namespace PharmacySystemBusinessLogic.Order
             var inStock = productValidation.CheckStock(allProducts, products);
 
             var quantityChanged = false;
+
             if (inStock)
             {
 
                 foreach (var product in products)
                     quantityChanged = productValidation.ChangeQuantity(product);
             }
-            return quantityChanged;
 
+            return quantityChanged;
         }
     }
 }

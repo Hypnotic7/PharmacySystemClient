@@ -11,7 +11,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
 
         public OrderRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-
         }
         
         public void Add(OrderEntity entity)

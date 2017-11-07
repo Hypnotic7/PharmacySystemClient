@@ -9,7 +9,6 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
     {
         public CustomerRepositoryMongo(IMongoClient mongoClient) : base(mongoClient)
         {
-
         }
 
         public string CollectionName => "Customers";
@@ -57,8 +56,8 @@ namespace PharmacySystemDataAccess.Repository.MongoRepository.Repositories
             {
                 throw new KeyNotFoundException($"Customer Name not found: {customerName}");
             }
-            throw new KeyNotFoundException($"Customer Name not found: {customerName}");
 
+            throw new KeyNotFoundException($"Customer Name not found: {customerName}");
         }
     }
 }
