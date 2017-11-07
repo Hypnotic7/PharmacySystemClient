@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PharmacySystemDataAccess.Models.Prescription;
+﻿using PharmacySystemDataAccess.Models.Prescription;
 
 namespace PharmacySystemBusinessLogic.Perscription
 {

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PharmacySystemAPI.Models.Order;
+using PharmacySystemBusinessLogic.Interceptor;
 using PharmacySystemBusinessLogic.Order;
-using PharmacySystemBusinessLogic.Product;
 using PharmacySystemDataAccess.Models.Order;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
@@ -25,12 +25,15 @@ namespace PharmacySystemAPI.Controllers
 
         public OrderResponse Post([FromBody]OrderRequest orderRequest)
         {
-            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString);
+            Dispatcher dispatcher = new Dispatcher();
+            dispatcher.RegisterInterceptor(new LoggerInterceptor());
+            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString, dispatcher, new Logger());
 
             try
             {
                 var orderValidationStatus = orderValidation.ValidateOrder(orderRequest.AccountName,
                    orderRequest.CustomerName, orderRequest.Products);
+
                 orderValidation.AddOrderToRepository(orderValidationStatus.OrderEntity);
                 return new OrderResponse()
                 {

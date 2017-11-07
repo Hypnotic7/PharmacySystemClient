@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PharmacySystemDataAccess.Models.Customer;
+﻿using PharmacySystemDataAccess.Models.Customer;
 using PharmacySystemDataAccess.Repository;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 

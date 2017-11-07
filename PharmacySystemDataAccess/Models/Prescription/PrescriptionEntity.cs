@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using PharmacySystemDataAccess.Models.Product;
 
 namespace PharmacySystemDataAccess.Models.Prescription
 {
