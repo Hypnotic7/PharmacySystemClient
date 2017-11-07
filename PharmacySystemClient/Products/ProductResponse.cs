@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace PharmacySystemClient
 {
-    class Accounts
+    class ProductResponse
     {
-        public string AccountName;
-        public string AccountPassword;
+        public bool GotAllProducts { get; set; }
+        public List<ProductEntity> ProductEntities { get; set; }
     }
-
 }

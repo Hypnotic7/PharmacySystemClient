@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace PharmacySystemClient
 {
-    class ProductResponse
+    class ProductEntity
     {
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Quantity { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
         public double Price { get; set; }
+        public int Quantity { get; set; }
         public bool RequiresPrescription { get; set; }
         public string Container { get; set; }
-
     }
 }
