@@ -3,13 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
-        Title="MainMenu" Height="300" Width="300">
+        Title="Pharmacy System Main Menu" Height="500" Width="800">
     <Grid>
-        <Button x:Name="SalesBtn" Content="View Sales" HorizontalAlignment="Left" Height="20" Margin="10,124,0,0" VerticalAlignment="Top" Width="70" Click="Button_Click"/>
-        <Button x:Name="ModifyBtn" Content="Modify" HorizontalAlignment="center" Height="20" Margin="10,124,0,0" VerticalAlignment="Top" Width="49" Click="Button_Click"/>
-        <Button x:Name="OrderBtn" Content="Process Order" HorizontalAlignment="Right" Height="20" Margin="0,124,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click"/>
-        <Button x:Name="LogoutBtn" Content="Logout" HorizontalAlignment="Right" Width="50" VerticalAlignment="Top" Margin="0,228,20,0" RenderTransformOrigin="0.35,4.415"  Click="Button_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <TextBlock Grid.Column="1"><InlineUIContainer>
+            <Image Source="/Resources/PharmacyLogo.png" Height="708" Width="152" />
+        </InlineUIContainer></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="96*"/>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="49*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="SalesBtn" Content="View Sales" HorizontalAlignment="Left" Height="20" Margin="0,229,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click" Grid.Column="2"/>
+        <Button x:Name="ModifyBtn" Content="Modify" HorizontalAlignment="center" Height="20" Margin="1,289,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click" Grid.Column="2"/>
+        <Button x:Name="OrderBtn" Content="Process Order" HorizontalAlignment="Right" Height="20" Margin="0,169,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click" Grid.Column="2"/>
+        <Button x:Name="LogoutBtn" Content="Logout" HorizontalAlignment="Right" Width="76" VerticalAlignment="Top" Margin="0,407,99,0" RenderTransformOrigin="0.35,4.415"  Click="Button_Click" Height="20" Grid.Column="1"/>
     </Grid>
 </Window>

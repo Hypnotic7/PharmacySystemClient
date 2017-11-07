@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 
-namespace PharmacySystemClient
+namespace PharmacySystemClient.Orders
 {
     interface IOrder
     {
@@ -19,7 +19,6 @@ namespace PharmacySystemClient
 
         public ProductResponse GetProducts() 
         {
-           
             string responseFromServer;
             using (WebClient client = new WebClient())
             {

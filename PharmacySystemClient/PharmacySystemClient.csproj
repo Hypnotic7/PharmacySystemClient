@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.0.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -72,6 +73,15 @@
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.0.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.DataVisualization.3.5.50211.1\lib\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -109,6 +119,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -126,14 +139,17 @@
     <Compile Include="Customer\CustomerRequest.cs" />
     <Compile Include="Customer\CustomerResponse.cs" />
     <Compile Include="Modify.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="Orders\Order.cs" />
     <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prescription\PrescriptionEntity.cs" />
-    <Compile Include="Products\ProductEntity.cs" />
-    <Compile Include="Products\ProductResponse.cs" />
-    <Compile Include="Products\SchemesCards.cs" />
+    <Compile Include="Orders\ProductEntity.cs" />
+    <Compile Include="Orders\ProductResponse.cs" />
+    <Compile Include="Orders\SchemesCards.cs" />
+    <Compile Include="Sales\Sales.cs" />
+    <Compile Include="Sales\SalesEntity.cs" />
+    <Compile Include="Sales\SalesResponse.cs" />
     <Compile Include="UIRemote.cs" />
     <Page Include="Panels\Loginpanel.xaml">
       <SubType>Designer</SubType>
@@ -210,5 +226,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Pharmacy Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PharmacyLogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using PharmacySystemClient.Checkout;
 using PharmacySystemClient.Command;
+using PharmacySystemClient.Orders;
 using Unity;
 
 namespace PharmacySystemClient
@@ -25,6 +27,7 @@ namespace PharmacySystemClient
             container = new UnityContainer();
             container.RegisterInstance<ILogin>("Login",new Login());
             container.RegisterInstance<IOrder>("Order", new Order());
+            container.RegisterInstance<ICheckout>("Checkout", new Checkout.Checkout());
             Console.WriteLine("Interfaces Registered");
         }
     }

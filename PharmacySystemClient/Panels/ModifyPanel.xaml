@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
-        Title="ModifyPanel" Height="300" Width="300">
+        Title="ModifyPanel" Height="500" Width="800">
     <Grid>
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,217,28,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" />
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <TextBlock Grid.Column="1"><InlineUIContainer>
+            <Image Source="/Resources/PharmacyLogo.png" Height="708" Width="152" />
+        </InlineUIContainer></TextBlock>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,357,170,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" />
     </Grid>
 </Window>

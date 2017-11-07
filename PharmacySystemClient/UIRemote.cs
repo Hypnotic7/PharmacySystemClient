@@ -119,7 +119,13 @@ namespace PharmacySystemClient
         private SalesPanel sales = new SalesPanel();
         private MainMenu menu = new MainMenu();
         private Window window;
+        private AccountResponse Response;
 
+        public ViewSales(AccountResponse response)
+        {
+            Response = response;
+            sales.Response = Response;
+        }
         public void Execute()
         {
             window = sales;

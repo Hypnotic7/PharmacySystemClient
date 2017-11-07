@@ -33,7 +33,6 @@ namespace PharmacySystemClient
         public Loginwindow()
         {
             InitializeComponent();
-
             IocContainer ioccontainer = new IocContainer();
             ioccontainer.RegisterInterfaces();
 
@@ -43,14 +42,14 @@ namespace PharmacySystemClient
         {   
             bool isValid = ValidateUsernameAndPassword(GetUsername(), GetPassword());
 
-            if (isValid == true)
+            if (isValid)
             {
                 Login login = new Login();
                 login.Username = GetUsername();
                 login.Password = GetPassword();
                 AccountResponse response = login.ValidateLogin();
                 bool check = response.IsValid;
-                if (check == true)
+                if (check)
                 {
                     UIRemote remote = new UIRemote();
                     ViewMainMenu viewMenu = new ViewMainMenu(response);

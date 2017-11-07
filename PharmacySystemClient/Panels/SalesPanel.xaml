@@ -4,10 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacySystemClient"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="SalesPanel" Height="300" Width="300">
+        Title="SalesPanel" Height="500" Width="600">
     <Grid>
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="182,220,0,0" VerticalAlignment="Top" Width="75" Click="BackBtn_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="397,388,0,0" VerticalAlignment="Top" Width="75" Click="BackBtn_Click"/>
+        <chartingToolkit:Chart  Name="PieChart" Title="Sales" 
 
+                                VerticalAlignment="Top" Margin="54,27,70,0" Height="361">
+            <chartingToolkit:PieSeries DependentValuePath="Value" 
+
+                                       IndependentValuePath="Key" ItemsSource="{Binding}" 
+
+                                       IsSelectionEnabled="True" />
+        </chartingToolkit:Chart>
     </Grid>
 </Window>

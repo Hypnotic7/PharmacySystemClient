@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PharmacySystemClient.Checkout;
+using PharmacySystemClient.Orders;
 
 namespace PharmacySystemClient
 {
@@ -23,7 +24,10 @@ namespace PharmacySystemClient
     {
         private static double cost;
         private ProductResponse productResponse;
-        public AccountResponse accountResponse { get; set; }
+        public AccountResponse accountResponse;//g s
+        private CustomerResponse customerResponse;
+        private ViewMainMenu viewMenu;
+        private UIRemote remote;
         public OrderPanel()
         {
             InitializeComponent();
@@ -32,8 +36,8 @@ namespace PharmacySystemClient
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            UIRemote remote = new UIRemote();
-            ViewMainMenu viewMenu = new ViewMainMenu(accountResponse);
+            remote = new UIRemote();
+            viewMenu = new ViewMainMenu(accountResponse);
             remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
             this.Close();
@@ -57,13 +61,13 @@ namespace PharmacySystemClient
             customer.FirstName = tmp[0];
             customer.LastName = tmp[1];
             string[] items;
-            CustomerResponse response = customer.GetCustomer();
+            customerResponse = customer.GetCustomer();
            
-            if (response.IsValid)
+            if (customerResponse.IsValid)
             {
-                if (response.PrescriptionEntity.Products.Contains(","))
+                if (customerResponse.PrescriptionEntity.Products.Contains(","))
                 {
-                    var listOfItems = response.PrescriptionEntity.Products.Split(',');
+                    var listOfItems = customerResponse.PrescriptionEntity.Products.Split(',');
                     foreach (var product in listOfItems)
                     {
                         items = product.Split(' ');
@@ -72,14 +76,12 @@ namespace PharmacySystemClient
                 }
                 else
                 {
-                    items = response.PrescriptionEntity.Products.Split(' ');
+                    items = customerResponse.PrescriptionEntity.Products.Split(' ');
                     Cart.Items.Add(items[0] + " x" + items[1]);
                 }
                 DisplayPrice();
             }
         }
-
-       
 
         private void DisplayPrice()
         {
@@ -102,13 +104,13 @@ namespace PharmacySystemClient
             Price.Text = cost.ToString();
         }
 
-      
-
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             var product = ProductList.SelectedItem;
+            string productName = product.ToString();
+            bool check = CheckRequiresPrescription(productName);
             string quantity = Quantity.Text;
-            if (product != null && quantity!=null)
+            if (product != null && quantity!=null && check)
             {
                 int productQuantity = Convert.ToInt32(Quantity.Text);
                 string name = product.ToString();
@@ -152,13 +154,49 @@ namespace PharmacySystemClient
                 OrderResponse response = checkout.ValidateOrder();
                 if (response.OrderComplete)
                 {
-                    Console.WriteLine("Order Valid");
-                    var cost = response.OrderEntity.TotalCost;
-                    string result = "Name:\t" + customerName + "\nEmployee Name:\t" + accountName + "\nProducts:\t" + Cart.Items.ToString() + "\nTotal Cost:\t" +
-                                    cost;
-                    MessageBox.Show(result, "Transaction Complete");
+                    TransactionComplete(response,accountName,customerName);
                 }
             }
+        }
+
+        private void TransactionComplete(OrderResponse response,string accountName,string customerName)
+        {
+            Console.WriteLine("Order Valid");
+            var cost = response.OrderEntity.TotalCost;
+            string result = "Name:\t\t" + customerName + "\nEmployee Name:\t\t" + accountName + "\nProducts:\t\t";
+            foreach (var item in Cart.Items)
+            {
+                string name = item.ToString();
+                result += "\t\t" + name + "\n";
+            }
+            result += "\nTotal Cost:\t\t" + cost;
+            MessageBox.Show(result, "Transaction Complete");
+            this.Close();
+            remote = new UIRemote();
+            viewMenu = new ViewMainMenu(accountResponse);
+            remote.SetCommand(viewMenu);
+            remote.ExecuteCommand();
+        }
+
+        private bool CheckRequiresPrescription(string product)
+        {
+            string[] products = product.Split(' ');
+            foreach (var item in productResponse.ProductEntities)
+            {
+                if (item.ProductName == products[0])
+                {
+                    if (customerResponse.PrescriptionEntity.Products.Contains(product) && item.RequiresPrescription)
+                    {
+                        return true;
+                    }
+                    if (!item.RequiresPrescription)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

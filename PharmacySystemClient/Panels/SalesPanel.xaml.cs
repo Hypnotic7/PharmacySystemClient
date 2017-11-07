@@ -19,18 +19,35 @@ namespace PharmacySystemClient
     /// </summary>
     public partial class SalesPanel : Window
     {
+        public AccountResponse Response;
         public SalesPanel()
         {
             InitializeComponent();
+            DisplayChart();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            //UIRemote remote = new UIRemote();
-            //ViewMainMenu viewMenu = new ViewMainMenu();
-            //remote.SetCommand(viewMenu);
-            //remote.ExecuteCommand();
-            //this.Close();
+            UIRemote remote = new UIRemote();
+            ViewMainMenu viewMenu = new ViewMainMenu(Response);
+            remote.SetCommand(viewMenu);
+            remote.ExecuteCommand();
+            this.Close();
+        }
+
+        private void DisplayChart()
+        {
+            Sales.Sales sales = new Sales.Sales();
+            var salesResponse =sales.ValidateSales();
+            int medicalCard =salesResponse.SalesEntity.MedicalCardSales;
+            int drugScheme = salesResponse.SalesEntity.DrugSchemeSales;
+            int regularSale = salesResponse.SalesEntity.RegularSales;
+
+            List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
+            valueList.Add(new KeyValuePair<string, int>("Medical Card", medicalCard));
+            valueList.Add(new KeyValuePair<string, int>("Drug Scheme", drugScheme));
+            valueList.Add(new KeyValuePair<string, int>("Regular Sale", regularSale));
+            PieChart.DataContext = valueList;
         }
     }
 }

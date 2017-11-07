@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using Newtonsoft.Json;
+using PharmacySystemClient.Orders;
 
 namespace PharmacySystemClient.Checkout
 {

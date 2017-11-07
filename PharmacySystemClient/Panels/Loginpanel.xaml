@@ -5,19 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
-        Title="Loginwindow" Height="300" Width="300">
+        Title="Pharmacy System Login" Height="500" Width="800">
+   
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <TextBlock Grid.Column="1"><InlineUIContainer>
+                <Image Source="/Resources/PharmacyLogo.png" Height="708" Width="152" />
+            </InlineUIContainer></TextBlock>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="156*"/>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="291*"/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="UsernameLabel" Grid.Column="1" HorizontalAlignment="Left" Height="19.48" Margin="0,87.286,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Width="77.455" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="UsernameTextField" Grid.Column="3" HorizontalAlignment="Left" Height="19.48" Margin="46.143,87.286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46.753"/>
-        <TextBlock x:Name="PasswordLabel" Grid.Column="1" HorizontalAlignment="Left" Height="19.48" Margin="0,128.844,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="77.455" Grid.ColumnSpan="3"/>
-        <PasswordBox x:Name="PasswordField" Grid.Column="3" HorizontalAlignment="Left" Height="19.48" Margin="46.143,128.844,0,0" VerticalAlignment="Top" Width="46.753"/>
-        <Button Grid.ColumnSpan="3" Content="Login" HorizontalAlignment="Left" Height="19" Margin="99,170,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click"/>
+        <TextBlock x:Name="UsernameLabel" HorizontalAlignment="Left" Height="20" Margin="274,201,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Width="78" Grid.Column="1"/>
+        <TextBox x:Name="UsernameTextField" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="0,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232"/>
+        <TextBlock x:Name="PasswordLabel" HorizontalAlignment="Left" Height="20" Margin="274,244,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="78" Grid.Column="1"/>
+        <PasswordBox x:Name="PasswordField" Grid.Column="2" HorizontalAlignment="Left" Height="19" Margin="0,244,0,0" VerticalAlignment="Top" Width="232"/>
+        <Button Content="Login" HorizontalAlignment="Left" Height="19" Margin="274,362,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Grid.Column="1"/>
     </Grid>
 </Window>
