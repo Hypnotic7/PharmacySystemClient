@@ -152,6 +152,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resource.Designer.cs" />
+    <Compile Include="Resources\PharmacyBackground.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyBackground.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sales.cs" />
     <Compile Include="Sales\SalesEntity.cs" />
     <Compile Include="Sales\SalesResponse.cs" />
@@ -209,6 +215,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx" />
+    <EmbeddedResource Include="Resources\PharmacyBackground.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PharmacyBackground.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -225,9 +236,8 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\Pharmacy Background.png" />
+    <None Include="Resources\PharmacyBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PharmacyLogo.png" />
