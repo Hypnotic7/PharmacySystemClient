@@ -147,6 +147,11 @@
     <Compile Include="Orders\ProductEntity.cs" />
     <Compile Include="Orders\ProductResponse.cs" />
     <Compile Include="Orders\SchemesCards.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sales.cs" />
     <Compile Include="Sales\SalesEntity.cs" />
     <Compile Include="Sales\SalesResponse.cs" />
@@ -195,19 +200,17 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -225,9 +228,8 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\Pharmacy Background.png" />
+    <None Include="Resources\PharmacyBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PharmacyLogo.png" />
