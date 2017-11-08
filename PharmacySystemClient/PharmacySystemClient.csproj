@@ -147,6 +147,11 @@
     <Compile Include="Orders\ProductEntity.cs" />
     <Compile Include="Orders\ProductResponse.cs" />
     <Compile Include="Orders\SchemesCards.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sales.cs" />
     <Compile Include="Sales\SalesEntity.cs" />
     <Compile Include="Sales\SalesResponse.cs" />
@@ -194,11 +199,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
