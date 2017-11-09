@@ -28,6 +28,11 @@ namespace PharmacySystemClient
         private CustomerResponse customerResponse;
         private ViewMainMenu viewMenu;
         private UIRemote remote;
+        private  Originator _product;
+        private ItemCollection emptyCartCollection;
+
+        public Originator Product;
+
         public OrderPanel()
         {
             InitializeComponent();
@@ -122,7 +127,11 @@ namespace PharmacySystemClient
                 Price.Text = cost.ToString();
                 Quantity.Text = "";
                 ProductList.UnselectAll();
+                Product = new Originator(Cart.Items);
+                CareTaker.Instance.Memento = Product.SaveOriginator();
+                
             }
+
         }
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
@@ -197,6 +206,43 @@ namespace PharmacySystemClient
             }
 
             return false;
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            CareTaker.Instance.Memento = Product.SaveOriginator();
+            Product.Amount = Cart.Items;
+            Cart.Items.Clear();
+           // _product.Amount = emptyCartCollection;
+        }
+
+        private void buttonRedo_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAndUpdateState();
+            //EnableUndo(true);
+        }
+
+        private void SaveAndUpdateState()
+        {
+            var x = Product.Amount.Count;
+            var prodMemento = Product.SaveOriginator();
+            Product.RestoreOriginator(CareTaker.Instance.Memento);
+            Update();
+            CareTaker.Instance.Memento = prodMemento;
+        }
+
+        private void Update()
+        {
+            foreach (var item in Product.Amount)
+            {
+                Cart.Items.Add(item.ToString());
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Update();
+            SaveAndUpdateState();
         }
     }
 }
