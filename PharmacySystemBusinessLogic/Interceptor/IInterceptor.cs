@@ -4,8 +4,8 @@ using System.Text;
 
 namespace PharmacySystemBusinessLogic.Interceptor
 {
-    public interface IInterceptor
+    public interface IInterceptor<T>
     {
-        void Intercept(ILogger logger);
+        void Intercept(T logger);
     }
 }

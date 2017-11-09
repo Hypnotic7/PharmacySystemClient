@@ -5,7 +5,7 @@ using System.Text;
 namespace PharmacySystemBusinessLogic.Interceptor
 {
     //Concrete Interceptor
-    public class LoggerInterceptor : IInterceptor
+    public class LoggerInterceptor : IInterceptor<ILogger>
     {
         public void Intercept(ILogger logger)
         {

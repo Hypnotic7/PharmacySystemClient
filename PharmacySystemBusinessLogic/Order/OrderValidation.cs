@@ -21,16 +21,16 @@ namespace PharmacySystemBusinessLogic.Order
     {
         public IDataAccess<OrderEntity> OrderRepository { get; }
         public string ConnString { private set; get; }
-        private readonly IInterceptor interceptor;
         private ILogger logger;
+        private IInvoker invoker;
         private Dispatcher dispatcher;
 
-        public OrderValidation(IRepositoryFactory<OrderEntity> orderFactory, string connectionString, Dispatcher dispatcher, ILogger logger)
+        public OrderValidation(IRepositoryFactory<OrderEntity> orderFactory, string connectionString, Dispatcher dispatcher, ILogger logger, IInvoker invoker)
         {
             ConnString = connectionString;
             OrderRepository = orderFactory.CreateRepository(ConnString, "OrderRepository");
-            this.interceptor = interceptor;
             this.logger = logger;
+            this.invoker = invoker;
             this.dispatcher = dispatcher;
         }
 
@@ -48,7 +48,8 @@ namespace PharmacySystemBusinessLogic.Order
 
             logger.Message = "Validate Account";
             dispatcher.interceptors.ForEach(f => f.Intercept(logger));
-
+            invoker.Message = "ValidateAccountEntity()";
+            dispatcher.interceptorsInv.ForEach(f => f.Intercept(invoker));
             var account = ValidateAccountEntity(accountName);
 
             if (account == null)
@@ -86,7 +87,8 @@ namespace PharmacySystemBusinessLogic.Order
                     OrderType = FinalOrderType.Completed,
                     Products = products,
                     TotalCost = totalCost,
-                    Interceptions = logger.LogList
+                    Interceptions = logger.LogList,
+                    Invokations = invoker.InvokedList
                 };
 
                 SalesValidation salesValidation = new SalesValidation(new RepositoryFactory<SalesEntity>(), ConnString);

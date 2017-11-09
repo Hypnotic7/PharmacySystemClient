@@ -24,6 +24,7 @@ namespace PharmacySystemDataAccess.Models.Order
         public DateTime OrderDate{ get; set; }
         public FinalOrderType OrderType { get; set; }
         public List<string> Interceptions { get; set; }
+        public List<string> Invokations { get; set; }
 
     }
 
