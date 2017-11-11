@@ -30,6 +30,7 @@ namespace PharmacySystemClient
         private UIRemote remote;
         private  Originator _product;
         private ItemCollection emptyCartCollection;
+        private string  previousCost;
 
         public Originator Product { get { return _product; } private set { _product = value;} }
 
@@ -62,32 +63,44 @@ namespace PharmacySystemClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string[] tmp = CustomerTextBox.Text.Split(' ');
-            Customer customer = new Customer();
-            customer.FirstName = tmp[0];
-            customer.LastName = tmp[1];
-            string[] items;
-            customerResponse = customer.GetCustomer();
-           
-            if (customerResponse.IsValid)
+            if (CustomerTextBox.Text != "")
             {
-                if (customerResponse.PrescriptionEntity.Products.Contains(","))
+                string[] tmp = CustomerTextBox.Text.Split(' ');
+                if (tmp.Length >= 2)
                 {
-                    var listOfItems = customerResponse.PrescriptionEntity.Products.Split(',');
-                    foreach (var product in listOfItems)
+                    Customer customer = new Customer();
+                    customer.FirstName = tmp[0];
+                    customer.LastName = tmp[1];
+                    string[] items;
+                    customerResponse = customer.GetCustomer();
+
+                    if (customerResponse.IsValid)
                     {
-                        items = product.Split(' ');
-                        Cart.Items.Add(items[0] + " x" + items[1]);
-                        Product.MomentoList.Add(items[0] + " x" + items[1]);
+                        if (customerResponse.PrescriptionEntity.Products.Contains(","))
+                        {
+                            var listOfItems = customerResponse.PrescriptionEntity.Products.Split(',');
+                            foreach (var product in listOfItems)
+                            {
+                                items = product.Split(' ');
+                                Cart.Items.Add(items[0] + " x" + items[1]);
+                                Product.MomentoList.Add(items[0] + " x" + items[1]);
+                            }
+                        }
+                        else
+                        {
+                            items = customerResponse.PrescriptionEntity.Products.Split(' ');
+                            Cart.Items.Add(items[0] + " x" + items[1]);
+                            Product.MomentoList.Add(items[0] + " x" + items[1]);
+                        }
+                        DisplayPrice();
                     }
                 }
                 else
                 {
-                    items = customerResponse.PrescriptionEntity.Products.Split(' ');
-                    Cart.Items.Add(items[0] + " x" + items[1]);
+                    MessageBox.Show("Incorrect format");
                 }
-                DisplayPrice();
             }
+           
         }
 
         private void DisplayPrice()
@@ -118,7 +131,7 @@ namespace PharmacySystemClient
                     string productName = product.ToString();
                     bool check = CheckRequiresPrescription(productName);
                     string quantity = Quantity.Text;
-                    if (product != null && quantity != null && check)
+                    if (product != null && quantity != "" && check)
                     {
                         int productQuantity = Convert.ToInt32(Quantity.Text);
                         string name = product.ToString();
@@ -176,11 +189,11 @@ namespace PharmacySystemClient
         {
             Console.WriteLine("Order Valid");
             var cost = response.OrderEntity.TotalCost;
-            string result = "Name:\t\t" + customerName + "\nEmployee Name:\t\t" + accountName + "\nProducts:\t\t";
+            string result = "Name:\t\t\t" + customerName + "\n\nEmployee Name:\t\t" + accountName + "\n\nProducts:";
             foreach (var item in Cart.Items)
             {
                 string name = item.ToString();
-                result += "\t\t" + name + "\n";
+                result += "\t\t\t" + name + "\n";
             }
             result += "\nTotal Cost:\t\t" + cost;
             MessageBox.Show(result, "Transaction Complete");
@@ -196,7 +209,7 @@ namespace PharmacySystemClient
             string[] products = product.Split(' ');
             foreach (var item in productResponse.ProductEntities)
             {
-                if (item.ProductName == products[0])
+                if (item.ProductName == products[0]&& customerResponse.IsValid)
                 {
                     if (customerResponse.PrescriptionEntity.Products.Contains(product) && item.RequiresPrescription)
                     {
@@ -216,29 +229,38 @@ namespace PharmacySystemClient
         {
            CareTaker.Instance.Memento = Product.SaveOriginator();
             Cart.Items.Clear();
-           // _product.Amount = emptyCartCollection;
+            previousCost = Price.Text;
+           Price.Text= "€0.00";
+            // _product.Amount = emptyCartCollection;
         }
 
-        private void SaveAndUpdateState()
+        //private void SaveAndUpdateState()
+        //{
+        //    var prodMemento = Product.SaveOriginator();
+        //    Product.RestoreOriginator(CareTaker.Instance.Memento);
+        //    Update();
+        //    CareTaker.Instance.Memento = prodMemento;
+        //}
+
+        //private void Update()
+        //{
+        //    foreach (var item in Product.MomentoList)
+        //    {
+        //        Cart.Items.Add(item.ToString());
+        //    }
+        //    Price.Text = previousCost;
+        //}
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var prodMemento = Product.SaveOriginator();
             Product.RestoreOriginator(CareTaker.Instance.Memento);
-            Update();
-            CareTaker.Instance.Memento = prodMemento;
-        }
-
-        private void Update()
-        {
             foreach (var item in Product.MomentoList)
             {
                 Cart.Items.Add(item.ToString());
             }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Update();
-            SaveAndUpdateState();
+            Price.Text = previousCost;
+            CareTaker.Instance.Memento = prodMemento;
         }
     }
 }

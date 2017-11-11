@@ -130,7 +130,7 @@
     </ApplicationDefinition>
     <Compile Include="Accounts\AccountRequest.cs" />
     <Compile Include="Accounts\AccountResponse.cs" />
-    <Compile Include="CareTaker.cs" />
+    <Compile Include="Mememto\CareTaker.cs" />
     <Compile Include="Checkout\Checkout.cs" />
     <Compile Include="Checkout\OrderEntity.cs" />
     <Compile Include="Checkout\OrderRequest.cs" />
@@ -139,10 +139,9 @@
     <Compile Include="Customer\CustomerEntity.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
     <Compile Include="Customer\CustomerResponse.cs" />
-    <Compile Include="Memento.cs" />
-    <Compile Include="Modify.cs" />
+    <Compile Include="Mememto\Memento.cs" />
     <Compile Include="Orders\Order.cs" />
-    <Compile Include="Originator.cs" />
+    <Compile Include="Mememto\Originator.cs" />
     <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
@@ -164,15 +163,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IOCContainer.cs" />
-    <Compile Include="Login.cs" />
+    <Compile Include="Accounts\Login.cs" />
     <Compile Include="Panels\Loginpanel.xaml.cs">
       <DependentUpon>Loginpanel.xaml</DependentUpon>
     </Compile>
     <Page Include="Panels\MainMenuPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Panels\ModifyPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,9 +183,6 @@
   <ItemGroup>
     <Compile Include="Panels\MainMenuPanel.xaml.cs">
       <DependentUpon>MainMenuPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Panels\ModifyPanel.xaml.cs">
-      <DependentUpon>ModifyPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\OrderPanel.xaml.cs">
       <DependentUpon>OrderPanel.xaml</DependentUpon>
@@ -218,6 +210,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Panels\PharmacyBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Panels\PharmacyLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

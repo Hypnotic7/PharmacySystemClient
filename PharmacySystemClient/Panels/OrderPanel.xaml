@@ -5,39 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
-        Title="Pharmacy System Create Order" Height="500" Width="800">
-    <Grid Margin="0,0,2,0" Height="469" VerticalAlignment="Bottom">
-        
-
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>
-        </Grid.Background>-->
-
-        <!--<TextBlock Grid.Column="1"><InlineUIContainer>
-                <Image Margin="110,60,0,-160" Source="/Resources/PharmacyLogo.png" Height="996" Width="137" RenderTransformOrigin="0.491,0.551" />
-            </InlineUIContainer></TextBlock>-->
-        
-        <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="182" Margin="450,135,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" />
-        <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="626,131,0,0" VerticalAlignment="Top" Width="67" Click="CheckoutBtn_Click" RenderTransformOrigin="0.463,0.19" Grid.Row="1" />
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,131,591,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" Grid.Row="1"/>
+        Title="Pharmacy System Create Order" Icon="PharmacyLogo.png" Height="500" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="PharmacyBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <TextBlock><InlineUIContainer>
+                <Image Source="PharmacyLogo.png" Height="566" Width="225" RenderTransformOrigin="0.5,0.519"  />
+            </InlineUIContainer></TextBlock>
+        <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="182" Margin="450,135,0,0" VerticalAlignment="Top" Width="100" />
+        <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="626,9,0,0" VerticalAlignment="Top" Width="67" Click="CheckoutBtn_Click" RenderTransformOrigin="0.463,0.19" Grid.Row="1" />
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,10,597,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="323,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106"><Run Text="Customer "/><Run Text="N"/><Run Text="ame :"/></TextBlock>
         <TextBox x:Name="CustomerTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Margin="450,56,0,0"/>
         <Button Content="Find Existing" HorizontalAlignment="Left" Margin="626,55,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="20"/>
-        <ListBox x:Name="Cart" HorizontalAlignment="Left" Height="182" Margin="626,135,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
-        <TextBlock x:Name="CostLabel" Text="Total Cost: " HorizontalAlignment="Left" Height="21" Margin="598,75,0,0" VerticalAlignment="Top" Width="60" Grid.Row="1"/>
-        <TextBlock x:Name="Price" Text="€0.00" HorizontalAlignment="Left" Height="21" Margin="687,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39" Grid.Row="1"/>
-        <TextBox x:Name="Quantity" HorizontalAlignment="Left" Height="21" Margin="505,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" RenderTransformOrigin="2.333,1.905" Grid.Row="1" />
-        <TextBlock x:Name="QuantityLabel" HorizontalAlignment="Left" Height="18" Margin="429,78,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="57" RenderTransformOrigin="2.75,4.944" Grid.Row="1"/>
-        <Button x:Name="AddToCart" Content="Add To Cart" HorizontalAlignment="Left" Height="21" Margin="450,131,0,0" VerticalAlignment="Top" Width="81" Click="AddToCart_Click" RenderTransformOrigin="1.173,1.762" Grid.Row="1"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="Clear"  Content="Clear" HorizontalAlignment="Left" Height="18" Margin="281,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50" Click="Clear_Click"/>
-        <Button Content="Redo" HorizontalAlignment="Left" Margin="281,131,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <ListBox x:Name="Cart" HorizontalAlignment="Left" Height="182" Margin="626,135,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="CostLabel" Text="Total Cost: " HorizontalAlignment="Left" Height="21" Margin="598,350,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBlock x:Name="Price" Text="€0.00" HorizontalAlignment="Left" Height="21" Margin="687,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39"/>
+        <TextBox x:Name="Quantity" HorizontalAlignment="Left" Height="21" Margin="505,353,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" RenderTransformOrigin="2.333,1.905" />
+        <TextBlock x:Name="QuantityLabel" HorizontalAlignment="Left" Height="18" Margin="429,353,0,0" TextWrapping="Wrap" Text="Quantity: " VerticalAlignment="Top" Width="57" RenderTransformOrigin="2.75,4.944"/>
+        <Button x:Name="AddToCart" Content="Add To Cart" HorizontalAlignment="Left" Height="21" Margin="450,10,0,0" VerticalAlignment="Top" Width="81" Click="AddToCart_Click" RenderTransformOrigin="1.173,1.762" Grid.Row="1"/>
+        <Button x:Name="Clear"  Content="Clear" HorizontalAlignment="Left" Height="18" Margin="306,353,0,0" VerticalAlignment="Top" Width="50" Click="Clear_Click"/>
+        <Button Content="Redo" HorizontalAlignment="Left" Margin="281,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Height="20"/>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="101*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-        <RowDefinition Height="261*"/>
-        <RowDefinition Height="208*"/>
+            <RowDefinition Height="407*"/>
+            <RowDefinition Height="62*"/>
         </Grid.RowDefinitions>
     </Grid>
 </Window>

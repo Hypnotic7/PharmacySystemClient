@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacySystemClient"
         mc:Ignorable="d"
-        Title="Pharmacy System Login" Height="500" Width="800">
-  
+        Title="Pharmacy System Login" Icon="PharmacyLogo.png" Height="500" Width="800">
+
     <Grid>
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="/Resources/PharmacyBackground.png" Stretch="UniformToFill"/>
-        </Grid.Background>-->
-        <!--<TextBlock>
-            <Image Source="/Resources/PharmacyLogo.png" Height="708" Width="152" />
-        </TextBlock>-->
+        <Grid.Background>
+            <ImageBrush ImageSource="PharmacyBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <TextBlock><InlineUIContainer>
+                <Image Source="PharmacyLogo.png" Height="657" Width="210" RenderTransformOrigin="0.421,0.496" />
+            </InlineUIContainer></TextBlock>
         <TextBlock x:Name="UsernameLabel"  Grid.Column="3" HorizontalAlignment="Left" Height="20" Margin="39,178,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Width="78" />
         <TextBox x:Name="UsernameTextField" Grid.Column="3" HorizontalAlignment="Left" Height="20" Margin="122,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232"/>
         <TextBlock x:Name="PasswordLabel" HorizontalAlignment="Left" Height="20" Margin="39,221,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="78" Grid.Column="3"/>
         <PasswordBox x:Name="PasswordField" Grid.Column="3" HorizontalAlignment="Left" Height="19" Margin="122,221,0,0" VerticalAlignment="Top" Width="232"/>
         <Button Content="Login" HorizontalAlignment="Left" Height="19" Margin="1,339,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Grid.Column="3"/>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="206"/>
+            <ColumnDefinition Width="49*"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="436"/>
         </Grid.ColumnDefinitions>

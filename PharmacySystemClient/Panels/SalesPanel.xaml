@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PharmacySystemClient"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="SalesPanel" Height="500" Width="600">
+        Title="SalesPanel" Icon="PharmacyLogo.png"  Height="500" Width="600">
     <Grid>
         <!--<Grid.Background>
             <ImageBrush ImageSource="/Resources/Pharmacy Background.png" Stretch="UniformToFill"/>

@@ -69,23 +69,7 @@ namespace PharmacySystemClient
            // window 
         }
     }
-    class ViewModify : ICommand
-    {
-        private ModifyPanel modify = new ModifyPanel();
-        private Window window;
-
-        public void Execute()
-        {
-            window = modify;
-            window.Show();
-        }
-
-        public void Undo()
-        {
-            // window 
-        }
-    }
-
+   
     class ViewOrder : ICommand
     {
         private OrderPanel order;

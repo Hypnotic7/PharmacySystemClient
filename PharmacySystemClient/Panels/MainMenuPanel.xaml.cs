@@ -34,19 +34,12 @@ namespace PharmacySystemClient
             UIRemote remote = new UIRemote();
             ViewMainMenu viewMenu = new ViewMainMenu(Response);
             ViewOrder viewOrder = new ViewOrder(Response);
-            ViewModify modify = new ViewModify();
             ViewSales sales = new ViewSales(Response);
             ViewLogin login = new ViewLogin();
             var button = sender as Button;
             if (button.Name.Equals("OrderBtn"))
             {
                 remote.SetCommand(viewOrder);
-                remote.ExecuteCommand();
-                this.Close();
-            }
-            else if (button.Name.Equals("ModifyBtn"))
-            {
-                remote.SetCommand(modify);
                 remote.ExecuteCommand();
                 this.Close();
             }
