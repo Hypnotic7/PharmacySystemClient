@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using PharmacySystemClient.Checkout;
 using PharmacySystemClient.Orders;
 
+
 namespace PharmacySystemClient
 {
     /// <summary>
@@ -128,27 +129,26 @@ namespace PharmacySystemClient
         {
             var product = ProductList.SelectedItem;
           
-                    string productName = product.ToString();
-                    bool check = CheckRequiresPrescription(productName);
-                    string quantity = Quantity.Text;
-                    if (product != null && quantity != "" && check)
-                    {
-                        int productQuantity = Convert.ToInt32(Quantity.Text);
-                        string name = product.ToString();
-                        string[] result = name.Split(' ');
+            string productName = product.ToString();
+            bool check = CheckRequiresPrescription(productName);
+            string quantity = Quantity.Text;
+            if (product != null && quantity != "" && check)
+            {
+                int productQuantity = Convert.ToInt32(Quantity.Text);
+                string name = product.ToString();
+                string[] result = name.Split(' ');
 
-                        Cart.Items.Add(result[0] + " x" + productQuantity);
+                Cart.Items.Add(result[0] + " x" + productQuantity);
 
-                        cost += Convert.ToDouble(result[1]) * productQuantity;
-                        Price.Text = cost.ToString();
-                        Quantity.Text = "";
-                        ProductList.UnselectAll();
-                        Product.MomentoList.Add(result[0] + " x" + productQuantity);
+                cost += Convert.ToDouble(result[1]) * productQuantity;
+                Price.Text = cost.ToString();
+                Quantity.Text = "";
+                ProductList.UnselectAll();
+                Product.MomentoList.Add(result[0] + " x" + productQuantity);
 
-                        CareTaker.Instance.Memento = Product.SaveOriginator();
-                    
-                }
-            
+               CareTaker.Instance.Memento = Product.SaveOriginator();
+            }
+
         }
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)

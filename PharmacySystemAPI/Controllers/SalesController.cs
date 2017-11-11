@@ -27,11 +27,23 @@ namespace PharmacySystemAPI.Controllers
             try
             {
                 var salesValidationStatus = salesValidation.GetAllSales();
-                return new SalesResponse()
+                if (salesValidationStatus.GotAllSales)
                 {
-                    Message = "",
-                    SalesEntity = salesValidationStatus.SalesEntity
-                };
+                    return new SalesResponse()
+                    {
+                        Message = "Sales found",
+                        SalesEntity = salesValidationStatus.SalesEntity
+                    };
+                }
+                else
+                {
+                    return new SalesResponse()
+                    {
+                        Message = "Sales not found",
+                        SalesEntity = null
+                    };
+                }     
+               
             }
             catch (KeyNotFoundException keyNotFound)
             {

@@ -27,11 +27,23 @@ namespace PharmacySystemAPI.Controllers
             try
             {
                 var productValidationStatus = productValidation.GetAllProducts();
-                return new ProductResponse()
+                if (productValidationStatus.GotAllProducts)
                 {
-                    Message = "JUPI",
-                    ProductEntities = productValidationStatus.ProductEntities
-                };
+                    return new ProductResponse()
+                    {
+                        Message = "Products found",
+                        ProductEntities = productValidationStatus.ProductEntities
+                    };
+                }
+                else
+                {
+                    return new ProductResponse()
+                    {
+                        Message = "Products not found",
+                        ProductEntities = null
+                    };
+                }
+               
             }
             catch (KeyNotFoundException keyNotFound)
             {

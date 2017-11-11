@@ -23,7 +23,7 @@ namespace PharmacySystemBusinessLogic.Product
 
             var products = ProductRepository.FindAll();
 
-            if (!products.Equals(null))
+            if (products.Count != 0)
             {
                 return new ProductValidationStatus()
                 {
@@ -32,7 +32,7 @@ namespace PharmacySystemBusinessLogic.Product
                 };
             }
 
-            return null;
+            return new ProductValidationStatus();
         }
 
 

@@ -130,7 +130,6 @@
     </ApplicationDefinition>
     <Compile Include="Accounts\AccountRequest.cs" />
     <Compile Include="Accounts\AccountResponse.cs" />
-    <Compile Include="Mememto\CareTaker.cs" />
     <Compile Include="Checkout\Checkout.cs" />
     <Compile Include="Checkout\OrderEntity.cs" />
     <Compile Include="Checkout\OrderRequest.cs" />
@@ -139,9 +138,10 @@
     <Compile Include="Customer\CustomerEntity.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
     <Compile Include="Customer\CustomerResponse.cs" />
+    <Compile Include="Mememto\CareTaker.cs" />
     <Compile Include="Mememto\Memento.cs" />
-    <Compile Include="Orders\Order.cs" />
     <Compile Include="Mememto\Originator.cs" />
+    <Compile Include="Orders\Order.cs" />
     <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
