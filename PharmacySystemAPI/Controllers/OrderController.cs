@@ -26,7 +26,8 @@ namespace PharmacySystemAPI.Controllers
         {
             Dispatcher dispatcher = new Dispatcher();
             dispatcher.RegisterInterceptor(new LoggerInterceptor());
-            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString, dispatcher, new Logger());
+            dispatcher.RegisterInterceptor(new InvokerInterceptor());
+            OrderValidation orderValidation = new OrderValidation(new RepositoryFactory<OrderEntity>(), _appSettings.Value.MongoConnectionString, dispatcher, new Logger(),new Invoker());
 
             try
             {
