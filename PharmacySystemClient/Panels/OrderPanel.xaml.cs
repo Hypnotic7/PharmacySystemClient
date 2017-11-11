@@ -24,19 +24,20 @@ namespace PharmacySystemClient
     {
         private static double cost;
         private ProductResponse productResponse;
-        public AccountResponse accountResponse;//g s
+        public AccountResponse accountResponse;
         private CustomerResponse customerResponse;
         private ViewMainMenu viewMenu;
         private UIRemote remote;
         private  Originator _product;
         private ItemCollection emptyCartCollection;
 
-        public Originator Product;
+        public Originator Product { get { return _product; } private set { _product = value;} }
 
         public OrderPanel()
         {
             InitializeComponent();
             DisplayProducts();
+            Product = new Originator();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -77,6 +78,7 @@ namespace PharmacySystemClient
                     {
                         items = product.Split(' ');
                         Cart.Items.Add(items[0] + " x" + items[1]);
+                        Product.MomentoList.Add(items[0] + " x" + items[1]);
                     }
                 }
                 else
@@ -112,26 +114,28 @@ namespace PharmacySystemClient
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             var product = ProductList.SelectedItem;
-            string productName = product.ToString();
-            bool check = CheckRequiresPrescription(productName);
-            string quantity = Quantity.Text;
-            if (product != null && quantity!=null && check)
-            {
-                int productQuantity = Convert.ToInt32(Quantity.Text);
-                string name = product.ToString();
-                string[] result = name.Split(' ');
+          
+                    string productName = product.ToString();
+                    bool check = CheckRequiresPrescription(productName);
+                    string quantity = Quantity.Text;
+                    if (product != null && quantity != null && check)
+                    {
+                        int productQuantity = Convert.ToInt32(Quantity.Text);
+                        string name = product.ToString();
+                        string[] result = name.Split(' ');
 
-                Cart.Items.Add(result[0] + " x" + productQuantity);
+                        Cart.Items.Add(result[0] + " x" + productQuantity);
 
-                cost += Convert.ToDouble(result[1])*productQuantity;
-                Price.Text = cost.ToString();
-                Quantity.Text = "";
-                ProductList.UnselectAll();
-                Product = new Originator(Cart.Items);
-                CareTaker.Instance.Memento = Product.SaveOriginator();
-                
-            }
+                        cost += Convert.ToDouble(result[1]) * productQuantity;
+                        Price.Text = cost.ToString();
+                        Quantity.Text = "";
+                        ProductList.UnselectAll();
+                        Product.MomentoList.Add(result[0] + " x" + productQuantity);
 
+                        CareTaker.Instance.Memento = Product.SaveOriginator();
+                    
+                }
+            
         }
 
         private void CheckoutBtn_Click(object sender, RoutedEventArgs e)
@@ -210,21 +214,13 @@ namespace PharmacySystemClient
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            CareTaker.Instance.Memento = Product.SaveOriginator();
-            Product.Amount = Cart.Items;
+           CareTaker.Instance.Memento = Product.SaveOriginator();
             Cart.Items.Clear();
            // _product.Amount = emptyCartCollection;
         }
 
-        private void buttonRedo_Click(object sender, RoutedEventArgs e)
-        {
-            SaveAndUpdateState();
-            //EnableUndo(true);
-        }
-
         private void SaveAndUpdateState()
         {
-            var x = Product.Amount.Count;
             var prodMemento = Product.SaveOriginator();
             Product.RestoreOriginator(CareTaker.Instance.Memento);
             Update();
@@ -233,7 +229,7 @@ namespace PharmacySystemClient
 
         private void Update()
         {
-            foreach (var item in Product.Amount)
+            foreach (var item in Product.MomentoList)
             {
                 Cart.Items.Add(item.ToString());
             }
