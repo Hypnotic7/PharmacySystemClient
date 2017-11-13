@@ -1,6 +1,6 @@
 ﻿using System;
 using PharmacySystemClient.Checkout;
-using PharmacySystemClient.Command;
+using PharmacySystemClient.Accounts;
 using PharmacySystemClient.Orders;
 using PharmacySystemClient.Sales;
 using Unity;
@@ -14,10 +14,10 @@ namespace PharmacySystemClient
         public void RegisterInterfaces()
         {
             container = new UnityContainer();
-            container.RegisterInstance<ILogin>("Login",new Login());
-            container.RegisterInstance<IOrder>("Order", new Order());
-            container.RegisterInstance<ISales>("Sales", new Sales.Sales());
-            container.RegisterInstance<ICheckout>("Checkout", new Checkout.Checkout());
+            container.RegisterInstance<ILoginService>("Login",new LoginService());
+            container.RegisterInstance<IOrderService>("Order", new OrderService());
+            container.RegisterInstance<ISalesService>("Sales", new SalesService());
+            container.RegisterInstance<ICheckoutService>("Checkout", new CheckoutService());
             Console.WriteLine("Interfaces Registered");
         }
     }

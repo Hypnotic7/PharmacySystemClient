@@ -10,11 +10,11 @@ using System.Web.Helpers;
 
 namespace PharmacySystemClient.Orders
 {
-    interface IOrder
+    interface IOrderService
     {
         ProductResponse GetProducts();
     }
-    class Order : IOrder
+    class OrderService : IOrderService
     {
 
         public ProductResponse GetProducts() 

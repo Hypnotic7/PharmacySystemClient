@@ -11,11 +11,11 @@ using PharmacySystemClient;
 
 namespace PharmacySystemClient
 {
-    interface ICustomer
+    interface ICustomerService
     {
         CustomerResponse GetCustomer();
     }
-    class Customer : ICustomer
+    class CustomerService : ICustomerService
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -64,7 +64,7 @@ namespace PharmacySystemClient
 
         private string ConvertToJson(string firstName, string lastName)
         {
-            var obj = new Customer()
+            var obj = new CustomerService()
             {
                 FirstName = firstName,
                 LastName = lastName

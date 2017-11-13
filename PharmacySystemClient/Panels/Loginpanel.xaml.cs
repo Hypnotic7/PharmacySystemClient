@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
-using PharmacySystemClient.Command;
+using PharmacySystemClient.Accounts;
 using Unity;
 
 
@@ -42,7 +42,7 @@ namespace PharmacySystemClient
 
             if (isValid)
             {
-                Login login = new Login();
+                LoginService login = new LoginService();
                 login.Username = UsernameTextField.Text;
                 login.Password = PasswordField.Password;
                 AccountResponse response = login.ValidateLogin();

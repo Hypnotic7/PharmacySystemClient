@@ -9,12 +9,12 @@ using System.Web.Helpers;
 
 namespace PharmacySystemClient.Sales
 {
-    interface ISales
+    interface ISalesService
     {
         SalesResponse ValidateSales();
     }
 
-    class Sales : ISales
+    class SalesService : ISalesService
     {
         public SalesResponse ValidateSales()
         {

@@ -4,30 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Helpers;
-using System.Windows;
 using Newtonsoft.Json;
+using PharmacySystemClient.Orders;
 
-namespace PharmacySystemClient.Command
+namespace PharmacySystemClient.Checkout
 {
-    interface ILogin
+    interface ICheckoutService
     {
-        AccountResponse ValidateLogin();
-    }
-
-    class Login : ILogin
+        OrderResponse ValidateOrder();
+    } 
+    class CheckoutService : ICheckoutService
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string accountName { get; set; }
+        public string customerName { get; set; }
+        public List<ProductEntity> products { get; set; }
 
-        public AccountResponse ValidateLogin()
+        public OrderResponse ValidateOrder()
         {
-            string json = ConvertToJson(Username, Password);
+            string json = ConvertToJson(accountName, customerName,products);
             Console.WriteLine(json);
 
-            var request = WebRequest.Create("http://localhost:8080/api/Account");
+            var request = WebRequest.Create("http://localhost:8080/api/Order");
             request.Method = "POST";
             request.ContentType = "application/json; charset=UTF-8";
 
@@ -54,22 +53,24 @@ namespace PharmacySystemClient.Command
             StreamReader reader = new StreamReader(dataStream);
             // Read the content.
             string responseFromServer = reader.ReadToEnd();
-            AccountResponse accountResponse = Json.Decode<AccountResponse>(responseFromServer);
+            OrderResponse orderResponse = Json.Decode<OrderResponse>(responseFromServer);
 
             // Display the content.
             Console.WriteLine(responseFromServer);
             // Clean up the streams.
             reader.Close();
             dataStream.Close();
-            return accountResponse;
+            return orderResponse;
         }
 
-        private string ConvertToJson(string name, string password )
+
+        private string ConvertToJson(string accountName, string customerName, List<ProductEntity> products)
         {
-            var obj = new AccountRequest()
+            var obj = new OrderRequest()
             {
-                AccountName = name,
-                AccountPassword = password
+                AccountName = accountName,
+                CustomerName = customerName,
+                Products = products
             };
             string json = JsonConvert.SerializeObject(obj);
 
@@ -78,6 +79,4 @@ namespace PharmacySystemClient.Command
     }
 }
 
-  
-    
 

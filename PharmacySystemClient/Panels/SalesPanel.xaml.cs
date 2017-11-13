@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PharmacySystemClient.Accounts;
+using PharmacySystemClient.Sales;
 
 namespace PharmacySystemClient
 {
@@ -37,7 +39,7 @@ namespace PharmacySystemClient
 
         private void DisplayChart()
         {
-            Sales.Sales sales = new Sales.Sales();
+            SalesService sales = new SalesService();
             var salesResponse =sales.ValidateSales();
             int medicalCard =salesResponse.SalesEntity.MedicalCardSales;
             int drugScheme = salesResponse.SalesEntity.DrugSchemeSales;

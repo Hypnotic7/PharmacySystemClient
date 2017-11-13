@@ -130,18 +130,18 @@
     </ApplicationDefinition>
     <Compile Include="Accounts\AccountRequest.cs" />
     <Compile Include="Accounts\AccountResponse.cs" />
-    <Compile Include="Checkout\Checkout.cs" />
+    <Compile Include="Checkout\CheckoutService.cs" />
     <Compile Include="Checkout\OrderEntity.cs" />
     <Compile Include="Checkout\OrderRequest.cs" />
     <Compile Include="Checkout\OrderResponse.cs" />
-    <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Customer\CustomerService.cs" />
     <Compile Include="Customer\CustomerEntity.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
     <Compile Include="Customer\CustomerResponse.cs" />
     <Compile Include="Mememto\CareTaker.cs" />
     <Compile Include="Mememto\Memento.cs" />
     <Compile Include="Mememto\Originator.cs" />
-    <Compile Include="Orders\Order.cs" />
+    <Compile Include="Orders\OrderService.cs" />
     <Compile Include="Panels\SalesPanel.xaml.cs">
       <DependentUpon>SalesPanel.xaml</DependentUpon>
     </Compile>
@@ -149,7 +149,7 @@
     <Compile Include="Orders\ProductEntity.cs" />
     <Compile Include="Orders\ProductResponse.cs" />
     <Compile Include="Orders\SchemesCards.cs" />
-    <Compile Include="Sales\Sales.cs" />
+    <Compile Include="Sales\SalesService.cs" />
     <Compile Include="Sales\SalesEntity.cs" />
     <Compile Include="Sales\SalesResponse.cs" />
     <Compile Include="UIRemote.cs" />
@@ -163,7 +163,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IOCContainer.cs" />
-    <Compile Include="Accounts\Login.cs" />
+    <Compile Include="Accounts\LoginService.cs" />
     <Compile Include="Panels\Loginpanel.xaml.cs">
       <DependentUpon>Loginpanel.xaml</DependentUpon>
     </Compile>

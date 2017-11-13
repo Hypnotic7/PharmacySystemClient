@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PharmacySystemClient.Accounts;
 using PharmacySystemClient.Checkout;
 using PharmacySystemClient.Orders;
 
@@ -53,7 +54,7 @@ namespace PharmacySystemClient
 
         private void DisplayProducts()
         {
-            Order order = new Order();
+            OrderService order = new OrderService();
             productResponse = order.GetProducts();
 
             foreach (var product in productResponse.ProductEntities)
@@ -69,7 +70,7 @@ namespace PharmacySystemClient
                 string[] tmp = CustomerTextBox.Text.Split(' ');
                 if (tmp.Length >= 2)
                 {
-                    Customer customer = new Customer();
+                    CustomerService customer = new CustomerService();
                     customer.FirstName = tmp[0];
                     customer.LastName = tmp[1];
                     string[] items;
@@ -173,7 +174,7 @@ namespace PharmacySystemClient
                         }
                     }
                 }
-                Checkout.Checkout checkout = new Checkout.Checkout();
+                CheckoutService checkout = new CheckoutService();
                 checkout.accountName = accountName;
                 checkout.customerName = customerName;
                 checkout.products = listOfProducts;
