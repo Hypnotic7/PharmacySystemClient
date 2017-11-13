@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PharmacySystemClient\PharmacySystemAPI\PharmacySystemAPI.csproj" />
-    <ProjectReference Include="..\PharmacySystemClient\PharmacySystemBusinessLogic\PharmacySystemBusinessLogic.csproj" />
-    <ProjectReference Include="..\PharmacySystemClient\PharmacySystemDataAccess\PharmacySystemDataAccess.csproj" />
+    <ProjectReference Include="..\PharmacySystemAPI\PharmacySystemAPI.csproj" />
+    <ProjectReference Include="..\PharmacySystemBusinessLogic\PharmacySystemBusinessLogic.csproj" />
+    <ProjectReference Include="..\PharmacySystemDataAccess\PharmacySystemDataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>

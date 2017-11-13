@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using PharmacySystemClient.Checkout;
 using PharmacySystemClient.Command;
 using PharmacySystemClient.Orders;
@@ -18,8 +11,6 @@ namespace PharmacySystemClient
     {
         public IUnityContainer container  { get; set; }
         
-    
-
         public void RegisterInterfaces()
         {
             container = new UnityContainer();
