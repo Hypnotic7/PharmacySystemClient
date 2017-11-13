@@ -9,9 +9,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="PharmacyBackground.png" Stretch="UniformToFill"/>
         </Grid.Background>
-        <TextBlock><InlineUIContainer>
-            <Image Source="PharmacyLogo.png" Height="657" Width="210" RenderTransformOrigin="0.421,0.496" />
-        </InlineUIContainer></TextBlock>
+        <Image Source="PharmacyLogo.png" Height="464" Width="133" RenderTransformOrigin="0.421,0.496" Margin="93,-5,24,10" />
         <Button x:Name="SalesBtn" Content="View Sales" HorizontalAlignment="Left" Height="20" Margin="9,228,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click" Grid.Column="2"/>
         <Button x:Name="OrderBtn" Content="Process Order" HorizontalAlignment="Left" Height="20" Margin="9,168,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click" Grid.Column="2"/>
         <Button x:Name="LogoutBtn" Content="Logout" HorizontalAlignment="Right" Width="96" VerticalAlignment="Top" Margin="0,407,99,0" RenderTransformOrigin="0.35,4.415"  Click="Button_Click" Height="20" Grid.Column="1"/>

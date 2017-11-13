@@ -10,9 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="PharmacyBackground.png" Stretch="UniformToFill"/>
         </Grid.Background>
-        <TextBlock><InlineUIContainer>
-                <Image Source="PharmacyLogo.png" Height="566" Width="225" RenderTransformOrigin="0.5,0.519"  />
-            </InlineUIContainer></TextBlock>
+        <Image Source="PharmacyLogo.png" Height="464" Width="133" RenderTransformOrigin="0.5,0.519" Margin="92,0,567,5" Grid.RowSpan="2"  />
         <ListBox x:Name="ProductList" HorizontalAlignment="Left" Height="182" Margin="450,135,0,0" VerticalAlignment="Top" Width="100" />
         <Button x:Name="CheckoutBtn" Content="Checkout" HorizontalAlignment="Left" Height="21" Margin="626,9,0,0" VerticalAlignment="Top" Width="67" Click="CheckoutBtn_Click" RenderTransformOrigin="0.463,0.19" Grid.Row="1" />
         <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" Height="21" Margin="0,10,597,0" VerticalAlignment="Top" Width="67" Click="BackBtn_Click" Grid.Row="1"/>
