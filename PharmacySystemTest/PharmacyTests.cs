@@ -7,11 +7,15 @@ using Newtonsoft.Json;
 using PharmacySystemAPI;
 using PharmacySystemAPI.Controllers;
 using PharmacySystemAPI.Models.Account;
+using PharmacySystemAPI.Models.Customer;
+using PharmacySystemAPI.Models.Order;
 using PharmacySystemAPI.Models.Product;
+using System.Web.Helpers;
 using PharmacySystemBusinessLogic;
 using PharmacySystemBusinessLogic.Account.Validation;
 using PharmacySystemDataAccess;
 using PharmacySystemDataAccess.Models.Account;
+using PharmacySystemDataAccess.Models.Product;
 using PharmacySystemDataAccess.Repository.RepositoryFactory;
 
 namespace PharmacySystemTest
@@ -21,6 +25,8 @@ namespace PharmacySystemTest
     {
         private string accountName = "employee";
         private string accountPassword = "test";
+        private string firstName = "John";
+        private string lastName = "Doe";
 
         [TestMethod]
         public void ValidateLogin()
@@ -41,9 +47,7 @@ namespace PharmacySystemTest
         public void GetProducts()
         {
             string response = ResponseFromAPI("http://localhost:8080/api/Product");
-
             Assert.IsTrue(response.Contains("Products found"),"Products not found");
-
         }
 
         [TestMethod]
@@ -53,6 +57,23 @@ namespace PharmacySystemTest
 
             Assert.IsTrue(response.Contains("Sales found"), "Sales not found");
         }
+
+      
+        [TestMethod]
+        public void ValidateCustomer()
+        {
+            CustomerRequest accRequest = new CustomerRequest()
+            {
+                FirstName = firstName,
+                LastName = lastName
+            };
+            string json = JsonConvert.SerializeObject(accRequest);
+            string responseFromServer = PostAndGetResponseAPI("http://localhost:8080/api/Customer", json);
+
+            Assert.IsTrue(responseFromServer.Contains("true"), "Customer not found");
+            Assert.IsTrue(responseFromServer.Contains(" has been found"), "Customer not found");
+        }
+
 
         public string PostAndGetResponseAPI(string mongoURL, string postRequest)
         {

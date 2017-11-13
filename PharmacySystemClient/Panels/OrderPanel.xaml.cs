@@ -202,10 +202,7 @@ namespace PharmacySystemClient
             remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
             this.Close();
-            //remote = new UIRemote();
-            //viewMenu = new ViewMainMenu(accountResponse);
-            //remote.SetCommand(viewMenu);
-            //remote.ExecuteCommand();
+            
         }
 
         private bool CheckRequiresPrescription(string product)
@@ -235,25 +232,8 @@ namespace PharmacySystemClient
             Cart.Items.Clear();
             previousCost = Price.Text;
            Price.Text= "€0.00";
-            // _product.Amount = emptyCartCollection;
+
         }
-
-        //private void SaveAndUpdateState()
-        //{
-        //    var prodMemento = Product.SaveOriginator();
-        //    Product.RestoreOriginator(CareTaker.Instance.Memento);
-        //    Update();
-        //    CareTaker.Instance.Memento = prodMemento;
-        //}
-
-        //private void Update()
-        //{
-        //    foreach (var item in Product.MomentoList)
-        //    {
-        //        Cart.Items.Add(item.ToString());
-        //    }
-        //    Price.Text = previousCost;
-        //}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -266,5 +246,7 @@ namespace PharmacySystemClient
             Price.Text = previousCost;
             CareTaker.Instance.Memento = prodMemento;
         }
+
+
     }
 }
