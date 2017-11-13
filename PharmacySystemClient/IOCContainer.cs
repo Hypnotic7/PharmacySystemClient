@@ -18,10 +18,7 @@ namespace PharmacySystemClient
     {
         public IUnityContainer container  { get; set; }
         
-        public IocContainer()
-        {
-           
-        }
+    
 
         public void RegisterInterfaces()
         {

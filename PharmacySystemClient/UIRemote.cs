@@ -19,10 +19,7 @@ namespace PharmacySystemClient
     {
          ICommand icommand;
         
-        public UIRemote()
-        {
-            
-        }
+  
         public void SetCommand(ICommand icommand)
         {
             this.icommand = icommand;
@@ -34,34 +31,18 @@ namespace PharmacySystemClient
     }
 
     class ViewMainMenu : ICommand
-    {
-       
-        private Window window;
-        private AccountResponse Response { get; }
-        private MainMenu mainMenu;
+    { 
+        private UIReciever reciever;
 
         public ViewMainMenu(AccountResponse response)
         {
-            Response = response;
-             mainMenu = new MainMenu();
-            mainMenu.Response = Response;
+            reciever = new UIReciever(response);
 
         }
 
         public void Execute()
         {
-            if (Response.Account.AccountType == AccountTypeEnum.Employee)
-            {
-                window = mainMenu;
-                mainMenu.ShowEmployeeMenu();
-                window.Show();
-            }
-            else
-            {
-                window = mainMenu;
-                window.Show();
-            }
-         
+            reciever.SwitchToMainMenu(); 
         }
 
         public void Undo()
@@ -72,71 +53,117 @@ namespace PharmacySystemClient
    
     class ViewOrder : ICommand
     {
-        private OrderPanel order;
-        private MainMenu menu;
-        private Window window;
-        private AccountResponse Response;
-
+        private UIReciever reciever;
+       
         public ViewOrder(AccountResponse response)
         {
-            Response = response;
-            order = new OrderPanel();
-            order.accountResponse = response;
+            reciever = new UIReciever(response);
         }
 
         public void Execute()
         {
-            window = order;
-            window.Show();
+            reciever.SwitchToOrder();
         }
 
         public void Undo()
         {
-            menu = new MainMenu();
-            window = menu;
-            window.Show();
+            reciever.SwitchToMainMenu();
         }
     }
 
     class ViewSales : ICommand
     {
-        private SalesPanel sales = new SalesPanel();
-        private MainMenu menu = new MainMenu();
-        private Window window;
-        private AccountResponse Response;
+        private UIReciever reciever;
 
         public ViewSales(AccountResponse response)
         {
-            Response = response;
-            sales.Response = Response;
+           reciever = new UIReciever(response);
         }
         public void Execute()
         {
-            window = sales;
-            window.Show();
+            reciever.SwitchToSales();
         }
 
         public void Undo()
         {
-            window = menu;
-            window.Show();
+            reciever.SwitchToMainMenu();   
         }
     }
 
     class ViewLogin : ICommand
     {
-        private Loginwindow login = new Loginwindow();
-        private Window window;
+        private UIReciever reciever;
+        public ViewLogin(AccountResponse response)
+        {
+            reciever = new UIReciever(response);
+        }
 
         public void Execute()
         {
-            window = login;
-            window.Show();
+           reciever.SwitchToLogin();   
         }
 
         public void Undo()
         {
             // window 
+        }
+    }
+
+    class UIReciever
+    {
+        private Window window;
+        private MainMenu mainMenu;
+        private OrderPanel orderPanel;
+        private Loginwindow login;
+        private SalesPanel sales;
+        private UIReciever reciever;
+        private AccountResponse Response;
+
+        public UIReciever(AccountResponse response)
+        {
+            Response = response;
+        }
+
+        public void SwitchToMainMenu()
+        {
+            if (Response.Account.AccountType == AccountTypeEnum.Employee)
+            {
+                mainMenu = new MainMenu();
+                window = mainMenu;
+                mainMenu.Response = Response;
+                mainMenu.ShowEmployeeMenu();
+                window.Show();
+            }
+            else
+            {
+                mainMenu = new MainMenu();
+                window = mainMenu;
+                mainMenu.Response = Response;
+                window.Show();
+            }
+        }
+
+        public void SwitchToOrder()
+        {
+            orderPanel = new OrderPanel();
+            window = orderPanel;
+            orderPanel.accountResponse = Response;
+            window.Show();
+        }
+
+        public void SwitchToLogin()
+        {
+            login = new Loginwindow();
+            window = login;
+            window.Show();    
+        }
+
+        public void SwitchToSales()
+        {
+            sales = new SalesPanel();
+            window = sales;
+            sales.Response = Response;
+            window.Show();
         }
     }
 }

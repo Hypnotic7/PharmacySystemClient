@@ -26,27 +26,25 @@ namespace PharmacySystemClient
     /// </summary>; 
     public partial class Loginwindow : Window
     {
-        private string username;
-        private string password;
-    
+        private IocContainer ioccontainer;
 
         public Loginwindow()
         {
             InitializeComponent();
-            IocContainer ioccontainer = new IocContainer();
+            ioccontainer = new IocContainer();
             ioccontainer.RegisterInterfaces();
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {   
-            bool isValid = ValidateUsernameAndPassword(GetUsername(), GetPassword());
+            bool isValid = ValidateUsernameAndPassword(UsernameTextField.Text, PasswordField.Password);
 
             if (isValid)
             {
                 Login login = new Login();
-                login.Username = GetUsername();
-                login.Password = GetPassword();
+                login.Username = UsernameTextField.Text;
+                login.Password = PasswordField.Password;
                 AccountResponse response = login.ValidateLogin();
                 bool check = response.IsValid;
                 if (check)
@@ -70,14 +68,6 @@ namespace PharmacySystemClient
 
         }
 
-        private string GetUsername()
-        {
-            return UsernameTextField.Text;
-        }
-        private string GetPassword()
-        {
-            return PasswordField.Password;
-        }
 
         private bool ValidateUsernameAndPassword(string username,string password)
         {

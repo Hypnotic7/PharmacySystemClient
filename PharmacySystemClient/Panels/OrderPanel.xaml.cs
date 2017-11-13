@@ -197,11 +197,15 @@ namespace PharmacySystemClient
             }
             result += "\nTotal Cost:\t\t" + cost;
             MessageBox.Show(result, "Transaction Complete");
-            this.Close();
             remote = new UIRemote();
             viewMenu = new ViewMainMenu(accountResponse);
             remote.SetCommand(viewMenu);
             remote.ExecuteCommand();
+            this.Close();
+            //remote = new UIRemote();
+            //viewMenu = new ViewMainMenu(accountResponse);
+            //remote.SetCommand(viewMenu);
+            //remote.ExecuteCommand();
         }
 
         private bool CheckRequiresPrescription(string product)

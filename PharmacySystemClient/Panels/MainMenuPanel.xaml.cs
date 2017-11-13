@@ -35,7 +35,7 @@ namespace PharmacySystemClient
             ViewMainMenu viewMenu = new ViewMainMenu(Response);
             ViewOrder viewOrder = new ViewOrder(Response);
             ViewSales sales = new ViewSales(Response);
-            ViewLogin login = new ViewLogin();
+            ViewLogin login = new ViewLogin(Response);
             var button = sender as Button;
             if (button.Name.Equals("OrderBtn"))
             {
