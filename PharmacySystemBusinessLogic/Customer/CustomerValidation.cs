@@ -19,6 +19,8 @@ namespace PharmacySystemBusinessLogic.Customer
 
             if (firstName.Equals(string.Empty)) return customerValidationStatus;
             if (lastName.Equals(string.Empty)) return customerValidationStatus;
+            firstName = firstName[0].ToString().ToUpper() + firstName.Substring(1).ToLower();
+            lastName = lastName[0].ToString().ToUpper() + lastName.Substring(1).ToLower();
             var customerName = firstName.Trim() + " " + lastName.Trim();
 
             var customer = CustomerRepository.Find(customerName);
